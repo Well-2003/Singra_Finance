@@ -4,6 +4,8 @@ Site de finanças pessoais para quem nunca teve paciência com planilha.
 
 Python · Flask · MySQL · HTML5 · CSS3 · JavaScript
 
+Site: https://well-2003.github.io/Singra_Finance/
+
 > Projeto de estudo. A história, a equipe e os números da página "Sobre nós"
 > são fictícios.
 
