@@ -1,0 +1,285 @@
+/* Singra - páginas abertas
+   Início, Sobre nós e Ajuda: as três telas que qualquer pessoa vê antes de
+   ter conta. Carregado depois do global.css, e nunca junto com o
+   dashboard.css, são mundos separados.
+
+   Aqui o site pode respirar mais do que na área logada: quem chega está
+   decidindo se fica, não procurando um número. */
+
+/* SEÇÕES */
+
+.secao {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: var(--e6) var(--e2);
+}
+
+.secao-titulo {
+    font-size: var(--texto-titulo);
+    text-align: center;
+    margin-bottom: var(--e1);
+}
+
+.secao-apoio {
+    text-align: center;
+    color: var(--cor-texto-suave);
+    max-width: 60ch;
+    margin: 0 auto var(--e4);
+}
+
+/* Uma faixa de fundo linho separa seções sem precisar de linha divisória */
+.faixa { background: var(--cor-superficie); }
+
+/* CHAMADA PRINCIPAL */
+
+/* No celular o texto vem primeiro e a ilustração embaixo. No desktop os
+   dois dividem a tela. A ordem no HTML já é a ordem de leitura. */
+.chamada {
+    display: grid;
+    gap: var(--e4);
+    align-items: center;
+    padding-top: var(--e5);
+}
+
+.chamada h1 {
+    font-size: 34px;
+    line-height: 1.2;
+    margin-bottom: var(--e2);
+}
+
+.chamada-apoio {
+    font-size: 19px;
+    color: var(--cor-texto-suave);
+    max-width: 46ch;
+    margin-bottom: var(--e3);
+}
+
+.chamada-botoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e1);
+    align-items: center;
+}
+
+.chamada-selo {
+    display: block;
+    margin-top: var(--e2);
+    font-size: var(--texto-legenda);
+    color: var(--cor-texto-suave);
+}
+
+/* A ILUSTRAÇÃO DO PAINEL
+
+   É o próprio painel, montado com os mesmos cartões e as mesmas cores da
+   área logada, e não uma imagem. Assim a prévia nunca fica desatualizada em
+   relação ao produto, pesa alguns bytes e continua legível por leitor de
+   tela. Os números são de exemplo e estão marcados como tal no HTML. */
+.mostruario {
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-cartao);
+    box-shadow: var(--sombra-flutuante);
+    padding: var(--e2);
+    display: grid;
+    gap: var(--e1);
+    max-width: 420px;
+    width: 100%;
+    justify-self: center;
+}
+
+.mostruario-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--texto-legenda);
+    color: var(--cor-texto-suave);
+}
+
+.mostruario-destaque {
+    background: var(--cor-primaria-clara);
+    border-radius: var(--raio-cartao);
+    padding: var(--e2);
+}
+
+.mostruario-valor {
+    font-size: 38px;
+    font-weight: var(--peso-destaque);
+    line-height: 1.1;
+    display: block;
+}
+
+.mostruario-linha {
+    display: flex;
+    align-items: center;
+    gap: var(--e1);
+    padding: 6px 0;
+    font-size: var(--texto-legenda);
+}
+
+.mostruario-linha .barra { flex: 1; }
+
+/* BENEFÍCIOS E DEPOIMENTOS */
+
+.beneficio {
+    text-align: center;
+    padding: var(--e3) var(--e2);
+}
+
+.beneficio .bolha-grande { margin: 0 auto var(--e2); }
+
+.beneficio h3 { margin-bottom: var(--e1); }
+
+.beneficio p { color: var(--cor-texto-suave); }
+
+.depoimento p { font-style: italic; }
+
+.depoimento-quem {
+    display: flex;
+    align-items: center;
+    gap: var(--e1);
+    margin-top: var(--e2);
+}
+
+.depoimento-inicial {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--raio-redondo);
+    background: var(--cor-primaria-clara);
+    color: var(--cor-primaria-escura);
+    font-weight: var(--peso-forte);
+    flex: none;
+}
+
+/* Depoimentos inventados são identificados como tal, no rodapé da seção:
+   um site de dinheiro não deveria começar a relação com uma invenção */
+.aviso-ficticio {
+    text-align: center;
+    font-size: var(--texto-legenda);
+    color: var(--cor-texto-suave);
+    margin-top: var(--e3);
+}
+
+/* CHAMADA FINAL */
+
+.convite {
+    text-align: center;
+    background: var(--cor-primaria-clara);
+    border-radius: var(--raio-cartao);
+    padding: var(--e5) var(--e2);
+}
+
+.convite h2 { margin-bottom: var(--e1); }
+
+/* SOBRE NÓS */
+
+.texto-longo {
+    max-width: 68ch;
+    margin: 0 auto;
+}
+
+.texto-longo h2 { margin: var(--e4) 0 var(--e1); }
+
+.texto-longo p { margin-bottom: var(--e2); }
+
+.texto-longo ul {
+    margin: 0 0 var(--e2) var(--e3);
+    display: grid;
+    gap: var(--e1);
+}
+
+/* AJUDA */
+
+/* No celular o índice vira uma lista de atalhos acima das perguntas. No
+   desktop ele fica ao lado, sempre visível. */
+.ajuda {
+    display: grid;
+    gap: var(--e3);
+    align-items: start;
+}
+
+.ajuda-indice ul {
+    list-style: none;
+    display: grid;
+    gap: 2px;
+}
+
+.ajuda-indice a {
+    display: block;
+    padding: 10px var(--e1);
+    border-radius: var(--raio-botao);
+    color: var(--cor-texto);
+    text-decoration: none;
+}
+
+.ajuda-indice a:hover,
+.ajuda-indice a.ativo {
+    background: var(--cor-primaria-clara);
+    color: var(--cor-primaria-escura);
+    font-weight: var(--peso-forte);
+}
+
+.ajuda-grupo + .ajuda-grupo { margin-top: var(--e4); }
+
+.ajuda-grupo h2 { margin-bottom: var(--e2); }
+
+/* Uma pergunta por vez aberta não é obrigatório: quem quiser pode abrir
+   todas e ler de cima a baixo */
+.pergunta {
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-botao);
+    margin-bottom: var(--e1);
+    overflow: hidden;
+}
+
+.pergunta > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--e1);
+    padding: var(--e2);
+    font-weight: var(--peso-forte);
+    cursor: pointer;
+    list-style: none;
+}
+
+.pergunta > summary::-webkit-details-marker { display: none; }
+.pergunta > summary::after { content: "+"; font-size: 22px; color: var(--cor-texto-suave); }
+.pergunta[open] > summary::after { content: "\2013"; }
+
+.pergunta-resposta {
+    padding: 0 var(--e2) var(--e2);
+    color: var(--cor-texto-suave);
+}
+
+.pergunta-resposta p + p { margin-top: var(--e1); }
+
+.busca-ajuda { margin-bottom: var(--e3); }
+
+.sem-resultado {
+    text-align: center;
+    padding: var(--e4) var(--e2);
+    color: var(--cor-texto-suave);
+}
+
+/* A TROCA ENTRE CELULAR E DESKTOP
+   Igual ao dashboard.css: o bloco fica no fim do arquivo para vencer as
+   regras base por ordem, e não por seletores mais específicos. */
+@media (min-width: 900px) {
+    .chamada {
+        grid-template-columns: 1.1fr 1fr;
+        gap: var(--e5);
+        padding-top: var(--e6);
+    }
+
+    .chamada h1 { font-size: 46px; }
+
+    .ajuda { grid-template-columns: 240px 1fr; }
+
+    .ajuda-indice {
+        position: sticky;
+        top: var(--e2);
+    }
+}

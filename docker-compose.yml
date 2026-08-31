@@ -1,0 +1,45 @@
+# Singra - MySQL para desenvolvimento local
+#
+# Opcional. Em produção o banco é gerenciado (Aiven ou TiDB Cloud) e o
+# backend vive no Render; nada aqui vai para lá. Isto existe para quem for
+# mexer no projeto sem instalar MySQL na própria máquina:
+#
+#     docker compose up -d
+#
+# Sobe um MySQL 8.4 na porta 3306, já com o banco e o usuário criados, com
+# os mesmos nomes que o backend/.env.example espera. Para desligar sem
+# perder os dados, `docker compose stop`; para apagar tudo e recomeçar do
+# zero, `docker compose down -v`.
+#
+# As senhas abaixo são de desenvolvimento e estão no repositório de
+# propósito: o banco só escuta em 127.0.0.1 e não guarda dado de ninguém.
+
+services:
+  banco:
+    image: mysql:8.4
+    container_name: singra-mysql
+    restart: unless-stopped
+    ports:
+      # Preso ao localhost: sem isso o Docker abriria a porta para a rede
+      - "127.0.0.1:3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: singra-root
+      MYSQL_DATABASE: singra
+      MYSQL_USER: singra
+      MYSQL_PASSWORD: singra
+    command:
+      # utf8mb4 do começo: o site tem acento em tudo e emoji nas frases
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - dados-singra:/var/lib/mysql
+    healthcheck:
+      # O backend cria as tabelas sozinho na primeira subida, mas só depois
+      # que o MySQL estiver realmente aceitando conexão
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-psingra-root"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  dados-singra:

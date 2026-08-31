@@ -1,0 +1,1167 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Singra API",
+    "version": "1.0.0",
+    "description": "API do Singra. Só JSON: quem desenha as telas é o frontend estático, publicado à parte. Toda rota que não seja de autenticação espera o cabeçalho Authorization: Bearer <token>, e devolve apenas os dados do dono do token."
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:5000",
+      "description": "Desenvolvimento"
+    },
+    {
+      "url": "https://singra-api.onrender.com",
+      "description": "Produção"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "tokenSingra": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Token assinado devolvido pelo login. Vale 30 dias."
+      }
+    }
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Diz se a API está de pé e se o banco respondeu.",
+        "tags": [
+          "geral"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          }
+        }
+      }
+    },
+    "/api": {
+      "get": {
+        "summary": "Diz se a API está de pé e se o banco respondeu.",
+        "tags": [
+          "geral"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          }
+        }
+      }
+    },
+    "/api/auth/cadastro": {
+      "post": {
+        "summary": "Cria a conta e devolve o token de acesso.",
+        "tags": [
+          "auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          }
+        }
+      }
+    },
+    "/api/auth/eu": {
+      "get": {
+        "summary": "Devolve quem está logado, para conferir o token.",
+        "tags": [
+          "auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/auth/forca-senha": {
+      "post": {
+        "summary": "Avalia a força de uma senha, com a mesma régua usada na tela.",
+        "tags": [
+          "auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "summary": "Confere e-mail e senha e devolve o token.",
+        "tags": [
+          "auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          }
+        }
+      }
+    },
+    "/api/auth/recuperar-senha": {
+      "post": {
+        "summary": "Gera o link de redefinição de senha para o e-mail informado.",
+        "tags": [
+          "auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          }
+        }
+      }
+    },
+    "/api/auth/redefinir-senha": {
+      "post": {
+        "summary": "Troca a senha a partir do token recebido no link.",
+        "tags": [
+          "auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          }
+        }
+      }
+    },
+    "/api/cartoes": {
+      "get": {
+        "summary": "Lista os cartões e bancos do usuário.",
+        "tags": [
+          "geral"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Cadastra um cartão ou banco.",
+        "tags": [
+          "geral"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/cartoes/{cartao_id}": {
+      "put": {
+        "summary": "Renomeia ou troca a cor.",
+        "tags": [
+          "cartoes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "parameters": [
+          {
+            "name": "cartao_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Remove o cartão. Os gastos dele continuam no histórico.",
+        "tags": [
+          "cartoes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "parameters": [
+          {
+            "name": "cartao_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/categorias": {
+      "get": {
+        "summary": "Lista as categorias do usuário e as mais usadas.",
+        "tags": [
+          "geral"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Cria uma categoria.",
+        "tags": [
+          "geral"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/categorias/{categoria_id}": {
+      "put": {
+        "summary": "Renomeia, troca ícone e cor, esconde ou mostra a categoria.",
+        "tags": [
+          "categorias"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "parameters": [
+          {
+            "name": "categoria_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/contas": {
+      "get": {
+        "summary": "Contas do mês, mais as recorrentes previstas e o já comprometido.",
+        "tags": [
+          "geral"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Cadastra uma conta a pagar.",
+        "tags": [
+          "geral"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/contas/{conta_id}": {
+      "delete": {
+        "summary": "Apaga uma conta a pagar.",
+        "tags": [
+          "contas"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "parameters": [
+          {
+            "name": "conta_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/contas/{conta_id}/desfazer-pagamento": {
+      "post": {
+        "summary": "Volta a conta para a pagar e apaga o gasto criado.",
+        "tags": [
+          "contas"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "parameters": [
+          {
+            "name": "conta_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/contas/{conta_id}/pagar": {
+      "post": {
+        "summary": "Marca como paga, registra o gasto e renova a conta recorrente.",
+        "tags": [
+          "contas"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "parameters": [
+          {
+            "name": "conta_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/graficos/cartoes": {
+      "get": {
+        "summary": "Gastos por cartão ou banco, com a fatia \"sem cartão vinculado\".",
+        "tags": [
+          "graficos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/graficos/categorias": {
+      "get": {
+        "summary": "Gastos por categoria no mês.",
+        "tags": [
+          "graficos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/graficos/evolucao": {
+      "get": {
+        "summary": "Ganhos, gastos e saldo dos últimos meses.",
+        "tags": [
+          "graficos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/graficos/fixos-variaveis": {
+      "get": {
+        "summary": "Divisão entre gastos fixos e variáveis.",
+        "tags": [
+          "graficos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/graficos/investimento": {
+      "get": {
+        "summary": "Quanto foi guardado em cada período.",
+        "tags": [
+          "graficos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/graficos/orcamento": {
+      "get": {
+        "summary": "Planejado contra realizado, por categoria.",
+        "tags": [
+          "graficos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/metas": {
+      "get": {
+        "summary": "Metas, meta de investimento e reserva sugerida.",
+        "tags": [
+          "geral"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Cria uma meta comum.",
+        "tags": [
+          "geral"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/metas/{meta_id}": {
+      "put": {
+        "summary": "Edita nome, valor, prazo ou ícone.",
+        "tags": [
+          "metas"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "parameters": [
+          {
+            "name": "meta_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Apaga a meta e os aportes dela.",
+        "tags": [
+          "metas"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "parameters": [
+          {
+            "name": "meta_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/metas/{meta_id}/aportes": {
+      "post": {
+        "summary": "Guarda dinheiro em uma meta.",
+        "tags": [
+          "metas"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "parameters": [
+          {
+            "name": "meta_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/onboarding": {
+      "post": {
+        "summary": "Guarda as respostas do primeiro acesso.",
+        "tags": [
+          "geral"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/orcamentos": {
+      "put": {
+        "summary": "Define o limite de uma categoria no mês.",
+        "tags": [
+          "geral"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/orcamentos/copiar": {
+      "post": {
+        "summary": "Copia os limites do mês anterior.",
+        "tags": [
+          "orcamentos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/orcamentos/sugerir": {
+      "post": {
+        "summary": "Monta um planejamento pela regra 50/30/20.",
+        "tags": [
+          "orcamentos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/painel": {
+      "get": {
+        "summary": "Tudo o que a tela Início mostra, em uma requisição só.",
+        "tags": [
+          "geral"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/perfil": {
+      "get": {
+        "summary": "Lê nome, apelido, renda, dia de início do mês e idioma.",
+        "tags": [
+          "geral"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      },
+      "put": {
+        "summary": "Atualiza os dados do perfil, inclusive o idioma.",
+        "tags": [
+          "geral"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Apaga a conta e tudo o que está nela.",
+        "tags": [
+          "geral"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/perfil/exportar": {
+      "get": {
+        "summary": "Baixa todas as transações em CSV.",
+        "tags": [
+          "perfil"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/perfil/senha": {
+      "put": {
+        "summary": "Troca a senha, exigindo a senha atual.",
+        "tags": [
+          "perfil"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/resumo": {
+      "get": {
+        "summary": "Ganhos, gastos, disponível, taxa de poupança e guardado.",
+        "tags": [
+          "geral"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/transacoes": {
+      "post": {
+        "summary": "Registra um gasto ou um ganho, parcelando se pedido.",
+        "tags": [
+          "geral"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      },
+      "get": {
+        "summary": "Histórico, com os filtros da tela.",
+        "tags": [
+          "geral"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    },
+    "/api/transacoes/{transacao_id}": {
+      "put": {
+        "summary": "Corrige um registro.",
+        "tags": [
+          "transacoes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "parameters": [
+          {
+            "name": "transacao_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Apaga um registro ou a compra parcelada inteira.",
+        "tags": [
+          "transacoes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Deu certo."
+          },
+          "400": {
+            "description": "Falta algum campo ou ele veio errado."
+          },
+          "401": {
+            "description": "Sem token, ou com o token vencido."
+          }
+        },
+        "parameters": [
+          {
+            "name": "transacao_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "security": [
+          {
+            "tokenSingra": []
+          }
+        ]
+      }
+    }
+  }
+}

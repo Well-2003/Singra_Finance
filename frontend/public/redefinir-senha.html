@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F6F1E7">
+    <meta name="description" content="Crie uma senha nova para sua conta do Singra.">
+    <title>Nova senha - Singra</title>
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../src/css/global.css">
+</head>
+<body data-area="site" data-pagina="redefinir-senha">
+<a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+<main id="conteudo" class="tela-centro">
+    <div class="cartao cartao-entrada">
+        <div class="centro">
+            <a class="marca" href="index.html" data-marca></a>
+        </div>
+
+        <div data-etapa="formulario">
+            <h1 style="margin-top:var(--e3)">Crie sua senha nova</h1>
+
+            <form data-form-redefinir novalidate style="margin-top:var(--e2)">
+                <div class="campo" data-campo="senha">
+                    <label for="senha">Senha nova</label>
+                    <input type="password" id="senha" name="senha" data-forca-senha
+                           autocomplete="new-password" required minlength="8" autofocus>
+
+                    <div class="forca-senha" data-medidor aria-hidden="true">
+                        <span class="forca-marca"></span>
+                        <span class="forca-marca"></span>
+                        <span class="forca-marca"></span>
+                    </div>
+                    <span class="dica-campo" data-texto-forca role="status" aria-live="polite"></span>
+
+                    <button type="button" class="botao botao-texto" data-mostrar-senha="senha">
+                        Mostrar senha
+                    </button>
+                    <span class="aviso-campo" data-erro="senha" hidden></span>
+                </div>
+
+                <button type="submit" class="botao botao-acao botao-largo">Salvar e entrar</button>
+            </form>
+        </div>
+
+        <!-- Link já usado ou vencido: mostra o caminho para pedir outro,
+             em vez de deixar a pessoa parada -->
+        <div data-etapa="invalido" hidden>
+            <h1 style="margin-top:var(--e3)">Esse link não vale mais</h1>
+            <p class="legenda" data-texto-invalido></p>
+            <a class="botao botao-acao botao-largo" href="recuperar-senha.html">
+                Pedir um link novo
+            </a>
+        </div>
+    </div>
+</main>
+
+<script src="../src/js/utils/format.js"></script>
+<script src="../src/js/utils/sessao.js"></script>
+<script src="../src/js/components/icones.js"></script>
+<script src="../src/js/components/navegacao.js"></script>
+<script src="../src/js/components/carregando.js"></script>
+<script src="../src/js/components/avisos.js"></script>
+<script src="../src/js/components/senha.js"></script>
+<script src="../src/js/api/cliente.js"></script>
+<script src="../src/js/api/auth.js"></script>
+<script src="../src/js/i18n/pt.js"></script>
+<script src="../src/js/i18n/en.js"></script>
+<script src="../src/js/i18n/es.js"></script>
+<script src="../src/js/i18n/idioma.js"></script>
+<script src="../src/js/paginas/redefinir-senha.js"></script>
+</body>
+</html>

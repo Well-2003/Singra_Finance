@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F6F1E7">
+    <meta name="description" content="O Singra organiza seu dinheiro sem planilha: registre um gasto em três toques e veja quanto ainda pode gastar este mês.">
+    <title>Singra - seu dinheiro, organizado sem planilha</title>
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../src/css/global.css">
+    <link rel="stylesheet" href="../src/css/publico.css">
+</head>
+<body data-area="publica" data-pagina="inicio">
+<a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topo">
+    <div class="topo-interno">
+        <a class="marca" href="index.html" data-marca></a>
+        <nav class="topo-links" aria-label="Menu principal" data-menu-publico></nav>
+    </div>
+</header>
+
+<main id="conteudo">
+
+<!-- 1. Chamada principal -->
+<section class="secao chamada">
+    <div>
+        <h1>Seu dinheiro, organizado sem planilha.</h1>
+        <p class="chamada-apoio">
+            Registre um gasto em três toques e descubra, em uma olhada,
+            quanto você ainda pode gastar este mês.
+        </p>
+        <div class="chamada-botoes">
+            <a class="botao botao-acao" href="cadastro.html">Começar agora</a>
+            <a class="botao botao-texto" href="login.html">Já tenho conta</a>
+        </div>
+        <span class="chamada-selo">
+            Grátis. Sem cartão de crédito, sem propaganda de banco.
+        </span>
+    </div>
+
+    <!-- A prévia é o painel de verdade, montado com os mesmos cartões da
+         área logada. Os números são de exemplo, e o texto abaixo diz isso. -->
+    <div class="mostruario" role="img"
+         aria-label="Prévia do painel do Singra: você ainda pode gastar oitocentos e setenta reais em agosto, com os gastos do mês divididos por categoria.">
+        <div class="mostruario-topo" aria-hidden="true">
+            <span>Oi, Renata 👋</span>
+            <span>&larr; Agosto 2026 &rarr;</span>
+        </div>
+
+        <div class="mostruario-destaque" aria-hidden="true">
+            <span class="legenda">Você ainda pode gastar</span>
+            <span class="mostruario-valor">R$ 870</span>
+            <div class="barra"><span class="barra-trilha" style="width:73%"></span></div>
+            <span class="legenda">Entraram R$ 3.200 &middot; Saíram R$ 2.330</span>
+        </div>
+
+        <div aria-hidden="true">
+            <div class="mostruario-linha">
+                <span class="ponto-cor" style="background:var(--cat-moradia)"></span>
+                <span>Moradia</span>
+                <div class="barra"><span class="barra-trilha" style="width:82%"></span></div>
+                <strong>R$ 950</strong>
+            </div>
+            <div class="mostruario-linha">
+                <span class="ponto-cor" style="background:var(--cat-alimentacao)"></span>
+                <span>Alimentação</span>
+                <div class="barra"><span class="barra-trilha" style="width:54%"></span></div>
+                <strong>R$ 620</strong>
+            </div>
+            <div class="mostruario-linha">
+                <span class="ponto-cor" style="background:var(--cat-transporte)"></span>
+                <span>Transporte</span>
+                <div class="barra"><span class="barra-trilha" style="width:31%"></span></div>
+                <strong>R$ 360</strong>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Três benefícios -->
+<section class="faixa">
+    <div class="secao">
+        <h2 class="secao-titulo">Feito para quem nunca teve paciência com planilha</h2>
+        <p class="secao-apoio">
+            Três coisas resolvem quase tudo: registrar rápido, entender para
+            onde o dinheiro foi e ter um lugar guardando o que sobra.
+        </p>
+
+        <div class="grade-3">
+            <article class="cartao beneficio">
+                <span class="bolha bolha-grande" style="--cor-cat: var(--cor-acao)">
+                    <svg class="icone" aria-hidden="true"><use href="#i-toque"></use></svg>
+                </span>
+                <h3>Registre em 3 toques</h3>
+                <p>
+                    Valor, categoria, pronto. Sem formulário comprido, sem
+                    campo obrigatório que trava o registro no meio.
+                </p>
+            </article>
+
+            <article class="cartao beneficio">
+                <span class="bolha bolha-grande" style="--cor-cat: var(--cat-moradia)">
+                    <svg class="icone" aria-hidden="true"><use href="#i-graficos"></use></svg>
+                </span>
+                <h3>Veja para onde vai seu dinheiro</h3>
+                <p>
+                    Sete gráficos com uma frase embaixo explicando o que cada
+                    um está dizendo. Nada de você ter que interpretar sozinho.
+                </p>
+            </article>
+
+            <article class="cartao beneficio">
+                <span class="bolha bolha-grande" style="--cor-cat: var(--cor-primaria)">
+                    <svg class="icone" aria-hidden="true"><use href="#i-meta"></use></svg>
+                </span>
+                <h3>Alcance suas metas</h3>
+                <p>
+                    Escolha quanto quer guardar e com que frequência. O Singra
+                    acompanha e avisa quando dá para guardar mais.
+                </p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- 3. Prévia dos gráficos -->
+<section class="secao">
+    <h2 class="secao-titulo">Gráficos que respondem perguntas</h2>
+    <p class="secao-apoio">
+        Cada desenho tem um título em forma de pergunta e uma frase embaixo
+        que responde. Estes são de exemplo.
+    </p>
+
+    <div class="grade-2">
+        <article class="cartao">
+            <h3>Para onde foi meu dinheiro?</h3>
+            <ul class="legenda-lista" aria-hidden="true">
+                <li><span class="legenda-cor" style="--cor-cat: var(--cat-moradia)"></span>
+                    <span class="crescer">Moradia</span><strong>R$ 950</strong>
+                    <span class="legenda">41%</span></li>
+                <li><span class="legenda-cor" style="--cor-cat: var(--cat-alimentacao)"></span>
+                    <span class="crescer">Alimentação</span><strong>R$ 620</strong>
+                    <span class="legenda">27%</span></li>
+                <li><span class="legenda-cor" style="--cor-cat: var(--cat-transporte)"></span>
+                    <span class="crescer">Transporte</span><strong>R$ 360</strong>
+                    <span class="legenda">15%</span></li>
+                <li><span class="legenda-cor" style="--cor-cat: var(--cat-lazer)"></span>
+                    <span class="crescer">Lazer</span><strong>R$ 400</strong>
+                    <span class="legenda">17%</span></li>
+            </ul>
+            <p class="frase-grafico">
+                Moradia levou 41% dos seus gastos em agosto.
+            </p>
+        </article>
+
+        <article class="cartao">
+            <h3>Estou gastando mais do que ganho?</h3>
+            <div aria-hidden="true">
+                <div class="mostruario-linha">
+                    <span>Junho</span>
+                    <div class="barra"><span class="barra-trilha" style="width:64%"></span></div>
+                    <strong>sobrou R$ 1.100</strong>
+                </div>
+                <div class="mostruario-linha">
+                    <span>Julho</span>
+                    <div class="barra"><span class="barra-trilha" style="width:88%"></span></div>
+                    <strong>sobrou R$ 380</strong>
+                </div>
+                <div class="mostruario-linha">
+                    <span>Agosto</span>
+                    <div class="barra"><span class="barra-trilha" style="width:73%"></span></div>
+                    <strong>sobrou R$ 870</strong>
+                </div>
+            </div>
+            <p class="frase-grafico">
+                Nos últimos 3 meses você gastou menos do que ganhou.
+            </p>
+        </article>
+    </div>
+</section>
+
+<!-- 4. Depoimentos -->
+<section class="faixa">
+    <div class="secao">
+        <h2 class="secao-titulo">Para quem o Singra foi feito</h2>
+        <p class="secao-apoio">
+            Pessoas que ganham o suficiente, mas chegam ao fim do mês sem
+            saber para onde o dinheiro foi.
+        </p>
+
+        <div class="grade-3">
+            <article class="cartao depoimento">
+                <p>
+                    &ldquo;Eu abria a planilha uma vez e nunca mais. Aqui eu
+                    registro na fila do mercado e acabou.&rdquo;
+                </p>
+                <div class="depoimento-quem">
+                    <span class="depoimento-inicial" aria-hidden="true">R</span>
+                    <span><strong>Renata</strong><br>
+                        <span class="legenda">32 anos, analista</span></span>
+                </div>
+            </article>
+
+            <article class="cartao depoimento">
+                <p>
+                    &ldquo;Como autônomo, meu mês nunca começa no dia 1. Poder
+                    escolher o dia 5 mudou tudo para mim.&rdquo;
+                </p>
+                <div class="depoimento-quem">
+                    <span class="depoimento-inicial" aria-hidden="true">C</span>
+                    <span><strong>Caio</strong><br>
+                        <span class="legenda">28 anos, designer</span></span>
+                </div>
+            </article>
+
+            <article class="cartao depoimento">
+                <p>
+                    &ldquo;Guardar R$ 200 por mês parecia pouco. Vendo o
+                    círculo encher, virou hábito.&rdquo;
+                </p>
+                <div class="depoimento-quem">
+                    <span class="depoimento-inicial" aria-hidden="true">M</span>
+                    <span><strong>Marina</strong><br>
+                        <span class="legenda">41 anos, professora</span></span>
+                </div>
+            </article>
+        </div>
+
+        <p class="aviso-ficticio">
+            Depoimentos ilustrativos, escritos por nós. O Singra é um projeto
+            novo e ainda não tem clientes para citar.
+        </p>
+    </div>
+</section>
+
+<!-- 5. Convite final -->
+<section class="secao">
+    <div class="convite">
+        <h2>Comece pelo próximo gasto</h2>
+        <p class="secao-apoio">
+            Não precisa organizar o passado. Registre o café de hoje e o resto
+            vai se montando sozinho.
+        </p>
+        <a class="botao botao-acao" href="cadastro.html">Criar minha conta grátis</a>
+        <p class="chamada-selo">
+            Quer só olhar antes? Há uma conta de demonstração na
+            <a href="login.html">tela de entrar</a>.
+        </p>
+    </div>
+</section>
+
+</main>
+
+<footer class="rodape">
+    <div class="rodape-interno">
+        <div>
+            <a class="marca" href="index.html" data-marca></a>
+            <p style="margin-top:8px">Seu dinheiro, organizado sem planilha.</p>
+        </div>
+        <nav aria-label="Links do rodapé">
+            <span class="rodape-titulo">O Singra</span>
+            <ul class="lista-limpa">
+                <li><a href="sobre.html">Sobre nós</a></li>
+                <li><a href="ajuda.html">Ajuda</a></li>
+                <li><a href="cadastro.html">Criar conta</a></li>
+                <li><a href="login.html">Entrar</a></li>
+            </ul>
+        </nav>
+        <div>
+            <span class="rodape-titulo">Fale com a gente</span>
+            <ul class="lista-limpa">
+                <li><a href="mailto:ola@singra.com.br">ola@singra.com.br</a></li>
+                <li>Curitiba, PR</li>
+                <li>@singra.app</li>
+            </ul>
+        </div>
+    </div>
+    <p class="rodape-assinatura">&copy; 2026 Singra &middot; Projeto de estudo</p>
+</footer>
+
+<script src="../src/js/utils/sessao.js"></script>
+<script src="../src/js/components/icones.js"></script>
+<script src="../src/js/components/navegacao.js"></script>
+<script src="../src/js/i18n/pt.js"></script>
+<script src="../src/js/i18n/en.js"></script>
+<script src="../src/js/i18n/es.js"></script>
+<script src="../src/js/i18n/idioma.js"></script>
+</body>
+</html>

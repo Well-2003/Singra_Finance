@@ -1,0 +1,207 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="1044" viewBox="0 0 940 1044" font-family="Nunito, Segoe UI, system-ui, sans-serif" font-size="12">
+<rect width="100%" height="100%" fill="#F6F1E7"/>
+<text x="40" y="40" font-size="22" font-weight="700" fill="#3B3F3A">Singra &#183; banco de dados</text>
+<line x1="340" y1="84" x2="290" y2="84" stroke="#B5B5A8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="640" y1="84" x2="290" y2="84" stroke="#B5B5A8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="40" y1="368" x2="290" y2="84" stroke="#B5B5A8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="40" y1="368" x2="590" y2="84" stroke="#B5B5A8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="40" y1="368" x2="890" y2="84" stroke="#B5B5A8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="340" y1="332" x2="290" y2="84" stroke="#B5B5A8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="340" y1="332" x2="590" y2="84" stroke="#B5B5A8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="640" y1="260" x2="290" y2="84" stroke="#B5B5A8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="40" y1="724" x2="890" y2="260" stroke="#B5B5A8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="340" y1="526" x2="290" y2="84" stroke="#B5B5A8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="640" y1="544" x2="290" y2="84" stroke="#B5B5A8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="640" y1="544" x2="590" y2="84" stroke="#B5B5A8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="640" y1="544" x2="290" y2="368" stroke="#B5B5A8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="40" y1="882" x2="290" y2="84" stroke="#B5B5A8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<rect x="40" y="70" width="250" height="236" rx="10" fill="#FFFDF9" stroke="#E6DFD1"/>
+<path d="M40 80 a10 10 0 0 1 10-10 h230 a10 10 0 0 1 10 10 v20 h-250 z" fill="#DCE5D3"/>
+<text x="52" y="91" font-weight="700" fill="#3B3F3A">usuarios</text>
+<text x="52" y="112" fill="#6F8A62">PK id</text>
+<text x="278" y="112" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="52" y="130" fill="#3B3F3A">nome</text>
+<text x="278" y="130" text-anchor="end" fill="#6F756C" font-size="11">VARCHAR(100)</text>
+<text x="52" y="148" fill="#3B3F3A">apelido</text>
+<text x="278" y="148" text-anchor="end" fill="#6F756C" font-size="11">VARCHAR(40)</text>
+<text x="52" y="166" fill="#3B3F3A">email</text>
+<text x="278" y="166" text-anchor="end" fill="#6F756C" font-size="11">VARCHAR(150)</text>
+<text x="52" y="184" fill="#3B3F3A">senha_hash</text>
+<text x="278" y="184" text-anchor="end" fill="#6F756C" font-size="11">VARCHAR(255)</text>
+<text x="52" y="202" fill="#3B3F3A">renda_estimada</text>
+<text x="278" y="202" text-anchor="end" fill="#6F756C" font-size="11">DECIMAL(12,2)</text>
+<text x="52" y="220" fill="#3B3F3A">renda_variavel</text>
+<text x="278" y="220" text-anchor="end" fill="#6F756C" font-size="11">BOOLEAN</text>
+<text x="52" y="238" fill="#3B3F3A">dia_inicio_mes</text>
+<text x="278" y="238" text-anchor="end" fill="#6F756C" font-size="11">TINYINT</text>
+<text x="52" y="256" fill="#3B3F3A">idioma</text>
+<text x="278" y="256" text-anchor="end" fill="#6F756C" font-size="11">ENUM('pt','en','es')</text>
+<text x="52" y="274" fill="#3B3F3A">onboarding_ok</text>
+<text x="278" y="274" text-anchor="end" fill="#6F756C" font-size="11">BOOLEAN</text>
+<text x="52" y="292" fill="#3B3F3A">criado_em</text>
+<text x="278" y="292" text-anchor="end" fill="#6F756C" font-size="11">DATETIME</text>
+<rect x="340" y="70" width="250" height="200" rx="10" fill="#FFFDF9" stroke="#E6DFD1"/>
+<path d="M340 80 a10 10 0 0 1 10-10 h230 a10 10 0 0 1 10 10 v20 h-250 z" fill="#DCE5D3"/>
+<text x="352" y="91" font-weight="700" fill="#3B3F3A">categorias</text>
+<text x="352" y="112" fill="#6F8A62">PK id</text>
+<text x="578" y="112" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="352" y="130" fill="#6F8A62">FK usuario_id</text>
+<text x="578" y="130" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="352" y="148" fill="#3B3F3A">nome</text>
+<text x="578" y="148" text-anchor="end" fill="#6F756C" font-size="11">VARCHAR(60)</text>
+<text x="352" y="166" fill="#3B3F3A">tipo</text>
+<text x="578" y="166" text-anchor="end" fill="#6F756C" font-size="11">ENUM('gasto','ganho')</text>
+<text x="352" y="184" fill="#3B3F3A">essencial</text>
+<text x="578" y="184" text-anchor="end" fill="#6F756C" font-size="11">BOOLEAN</text>
+<text x="352" y="202" fill="#3B3F3A">icone</text>
+<text x="578" y="202" text-anchor="end" fill="#6F756C" font-size="11">VARCHAR(40)</text>
+<text x="352" y="220" fill="#3B3F3A">cor</text>
+<text x="578" y="220" text-anchor="end" fill="#6F756C" font-size="11">CHAR(7)</text>
+<text x="352" y="238" fill="#3B3F3A">oculta</text>
+<text x="578" y="238" text-anchor="end" fill="#6F756C" font-size="11">BOOLEAN</text>
+<text x="352" y="256" fill="#3B3F3A">ordem</text>
+<text x="578" y="256" text-anchor="end" fill="#6F756C" font-size="11">TINYINT</text>
+<rect x="640" y="70" width="250" height="128" rx="10" fill="#FFFDF9" stroke="#E6DFD1"/>
+<path d="M640 80 a10 10 0 0 1 10-10 h230 a10 10 0 0 1 10 10 v20 h-250 z" fill="#DCE5D3"/>
+<text x="652" y="91" font-weight="700" fill="#3B3F3A">cartoes_bancos</text>
+<text x="652" y="112" fill="#6F8A62">PK id</text>
+<text x="878" y="112" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="652" y="130" fill="#6F8A62">FK usuario_id</text>
+<text x="878" y="130" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="652" y="148" fill="#3B3F3A">nome</text>
+<text x="878" y="148" text-anchor="end" fill="#6F756C" font-size="11">VARCHAR(60)</text>
+<text x="652" y="166" fill="#3B3F3A">cor</text>
+<text x="878" y="166" text-anchor="end" fill="#6F756C" font-size="11">CHAR(7)</text>
+<text x="652" y="184" fill="#3B3F3A">criado_em</text>
+<text x="878" y="184" text-anchor="end" fill="#6F756C" font-size="11">DATETIME</text>
+<rect x="40" y="354" width="250" height="308" rx="10" fill="#FFFDF9" stroke="#E6DFD1"/>
+<path d="M40 364 a10 10 0 0 1 10-10 h230 a10 10 0 0 1 10 10 v20 h-250 z" fill="#DCE5D3"/>
+<text x="52" y="375" font-weight="700" fill="#3B3F3A">transacoes</text>
+<text x="52" y="396" fill="#6F8A62">PK id</text>
+<text x="278" y="396" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="52" y="414" fill="#6F8A62">FK usuario_id</text>
+<text x="278" y="414" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="52" y="432" fill="#6F8A62">FK categoria_id</text>
+<text x="278" y="432" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="52" y="450" fill="#6F8A62">FK cartao_id</text>
+<text x="278" y="450" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="52" y="468" fill="#3B3F3A">tipo</text>
+<text x="278" y="468" text-anchor="end" fill="#6F756C" font-size="11">ENUM('gasto','ganho')</text>
+<text x="52" y="486" fill="#3B3F3A">valor</text>
+<text x="278" y="486" text-anchor="end" fill="#6F756C" font-size="11">DECIMAL(12,2)</text>
+<text x="52" y="504" fill="#3B3F3A">descricao</text>
+<text x="278" y="504" text-anchor="end" fill="#6F756C" font-size="11">VARCHAR(120)</text>
+<text x="52" y="522" fill="#3B3F3A">data</text>
+<text x="278" y="522" text-anchor="end" fill="#6F756C" font-size="11">DATE</text>
+<text x="52" y="540" fill="#3B3F3A">forma_pagamento</text>
+<text x="278" y="540" text-anchor="end" fill="#6F756C" font-size="11">ENUM('pix','dinheiro'…</text>
+<text x="52" y="558" fill="#3B3F3A">fixa</text>
+<text x="278" y="558" text-anchor="end" fill="#6F756C" font-size="11">BOOLEAN</text>
+<text x="52" y="576" fill="#3B3F3A">parcela_atual</text>
+<text x="278" y="576" text-anchor="end" fill="#6F756C" font-size="11">TINYINT</text>
+<text x="52" y="594" fill="#3B3F3A">parcela_total</text>
+<text x="278" y="594" text-anchor="end" fill="#6F756C" font-size="11">TINYINT</text>
+<text x="52" y="612" fill="#3B3F3A">grupo_parcela</text>
+<text x="278" y="612" text-anchor="end" fill="#6F756C" font-size="11">CHAR(36)</text>
+<text x="52" y="630" fill="#3B3F3A">criado_em</text>
+<text x="278" y="630" text-anchor="end" fill="#6F756C" font-size="11">DATETIME</text>
+<text x="52" y="648" fill="#3B3F3A">atualizado_em</text>
+<text x="278" y="648" text-anchor="end" fill="#6F756C" font-size="11">DATETIME</text>
+<rect x="340" y="318" width="250" height="146" rx="10" fill="#FFFDF9" stroke="#E6DFD1"/>
+<path d="M340 328 a10 10 0 0 1 10-10 h230 a10 10 0 0 1 10 10 v20 h-250 z" fill="#DCE5D3"/>
+<text x="352" y="339" font-weight="700" fill="#3B3F3A">orcamentos</text>
+<text x="352" y="360" fill="#6F8A62">PK id</text>
+<text x="578" y="360" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="352" y="378" fill="#6F8A62">FK usuario_id</text>
+<text x="578" y="378" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="352" y="396" fill="#6F8A62">FK categoria_id</text>
+<text x="578" y="396" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="352" y="414" fill="#3B3F3A">ano</text>
+<text x="578" y="414" text-anchor="end" fill="#6F756C" font-size="11">SMALLINT</text>
+<text x="352" y="432" fill="#3B3F3A">mes</text>
+<text x="578" y="432" text-anchor="end" fill="#6F756C" font-size="11">TINYINT</text>
+<text x="352" y="450" fill="#3B3F3A">valor_limite</text>
+<text x="578" y="450" text-anchor="end" fill="#6F756C" font-size="11">DECIMAL(12,2)</text>
+<rect x="640" y="246" width="250" height="236" rx="10" fill="#FFFDF9" stroke="#E6DFD1"/>
+<path d="M640 256 a10 10 0 0 1 10-10 h230 a10 10 0 0 1 10 10 v20 h-250 z" fill="#DCE5D3"/>
+<text x="652" y="267" font-weight="700" fill="#3B3F3A">metas</text>
+<text x="652" y="288" fill="#6F8A62">PK id</text>
+<text x="878" y="288" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="652" y="306" fill="#6F8A62">FK usuario_id</text>
+<text x="878" y="306" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="652" y="324" fill="#3B3F3A">nome</text>
+<text x="878" y="324" text-anchor="end" fill="#6F756C" font-size="11">VARCHAR(80)</text>
+<text x="652" y="342" fill="#3B3F3A">valor_alvo</text>
+<text x="878" y="342" text-anchor="end" fill="#6F756C" font-size="11">DECIMAL(12,2)</text>
+<text x="652" y="360" fill="#3B3F3A">prazo</text>
+<text x="878" y="360" text-anchor="end" fill="#6F756C" font-size="11">DATE</text>
+<text x="652" y="378" fill="#3B3F3A">icone</text>
+<text x="878" y="378" text-anchor="end" fill="#6F756C" font-size="11">VARCHAR(40)</text>
+<text x="652" y="396" fill="#3B3F3A">reserva_emergencia</text>
+<text x="878" y="396" text-anchor="end" fill="#6F756C" font-size="11">BOOLEAN</text>
+<text x="652" y="414" fill="#3B3F3A">eh_investimento</text>
+<text x="878" y="414" text-anchor="end" fill="#6F756C" font-size="11">BOOLEAN</text>
+<text x="652" y="432" fill="#3B3F3A">cadencia</text>
+<text x="878" y="432" text-anchor="end" fill="#6F756C" font-size="11">ENUM('diaria','semana…</text>
+<text x="652" y="450" fill="#3B3F3A">concluida_em</text>
+<text x="878" y="450" text-anchor="end" fill="#6F756C" font-size="11">DATETIME</text>
+<text x="652" y="468" fill="#3B3F3A">criado_em</text>
+<text x="878" y="468" text-anchor="end" fill="#6F756C" font-size="11">DATETIME</text>
+<rect x="40" y="710" width="250" height="110" rx="10" fill="#FFFDF9" stroke="#E6DFD1"/>
+<path d="M40 720 a10 10 0 0 1 10-10 h230 a10 10 0 0 1 10 10 v20 h-250 z" fill="#DCE5D3"/>
+<text x="52" y="731" font-weight="700" fill="#3B3F3A">aportes_meta</text>
+<text x="52" y="752" fill="#6F8A62">PK id</text>
+<text x="278" y="752" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="52" y="770" fill="#6F8A62">FK meta_id</text>
+<text x="278" y="770" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="52" y="788" fill="#3B3F3A">valor</text>
+<text x="278" y="788" text-anchor="end" fill="#6F756C" font-size="11">DECIMAL(12,2)</text>
+<text x="52" y="806" fill="#3B3F3A">data</text>
+<text x="278" y="806" text-anchor="end" fill="#6F756C" font-size="11">DATE</text>
+<rect x="340" y="512" width="250" height="110" rx="10" fill="#FFFDF9" stroke="#E6DFD1"/>
+<path d="M340 522 a10 10 0 0 1 10-10 h230 a10 10 0 0 1 10 10 v20 h-250 z" fill="#DCE5D3"/>
+<text x="352" y="533" font-weight="700" fill="#3B3F3A">renda_extra</text>
+<text x="352" y="554" fill="#6F8A62">PK id</text>
+<text x="578" y="554" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="352" y="572" fill="#6F8A62">FK usuario_id</text>
+<text x="578" y="572" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="352" y="590" fill="#3B3F3A">tipo</text>
+<text x="578" y="590" text-anchor="end" fill="#6F756C" font-size="11">VARCHAR(40)</text>
+<text x="352" y="608" fill="#3B3F3A">valor_estimado</text>
+<text x="578" y="608" text-anchor="end" fill="#6F756C" font-size="11">DECIMAL(12,2)</text>
+<rect x="640" y="530" width="250" height="200" rx="10" fill="#FFFDF9" stroke="#E6DFD1"/>
+<path d="M640 540 a10 10 0 0 1 10-10 h230 a10 10 0 0 1 10 10 v20 h-250 z" fill="#DCE5D3"/>
+<text x="652" y="551" font-weight="700" fill="#3B3F3A">contas_pagar</text>
+<text x="652" y="572" fill="#6F8A62">PK id</text>
+<text x="878" y="572" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="652" y="590" fill="#6F8A62">FK usuario_id</text>
+<text x="878" y="590" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="652" y="608" fill="#6F8A62">FK categoria_id</text>
+<text x="878" y="608" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="652" y="626" fill="#3B3F3A">descricao</text>
+<text x="878" y="626" text-anchor="end" fill="#6F756C" font-size="11">VARCHAR(100)</text>
+<text x="652" y="644" fill="#3B3F3A">valor</text>
+<text x="878" y="644" text-anchor="end" fill="#6F756C" font-size="11">DECIMAL(12,2)</text>
+<text x="652" y="662" fill="#3B3F3A">vencimento</text>
+<text x="878" y="662" text-anchor="end" fill="#6F756C" font-size="11">DATE</text>
+<text x="652" y="680" fill="#3B3F3A">recorrente</text>
+<text x="878" y="680" text-anchor="end" fill="#6F756C" font-size="11">BOOLEAN</text>
+<text x="652" y="698" fill="#3B3F3A">paga_em</text>
+<text x="878" y="698" text-anchor="end" fill="#6F756C" font-size="11">DATE</text>
+<text x="652" y="716" fill="#6F8A62">FK transacao_id</text>
+<text x="878" y="716" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<rect x="40" y="868" width="250" height="128" rx="10" fill="#FFFDF9" stroke="#E6DFD1"/>
+<path d="M40 878 a10 10 0 0 1 10-10 h230 a10 10 0 0 1 10 10 v20 h-250 z" fill="#DCE5D3"/>
+<text x="52" y="889" font-weight="700" fill="#3B3F3A">tokens_senha</text>
+<text x="52" y="910" fill="#6F8A62">PK id</text>
+<text x="278" y="910" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="52" y="928" fill="#6F8A62">FK usuario_id</text>
+<text x="278" y="928" text-anchor="end" fill="#6F756C" font-size="11">INT</text>
+<text x="52" y="946" fill="#3B3F3A">token_hash</text>
+<text x="278" y="946" text-anchor="end" fill="#6F756C" font-size="11">CHAR(64)</text>
+<text x="52" y="964" fill="#3B3F3A">expira_em</text>
+<text x="278" y="964" text-anchor="end" fill="#6F756C" font-size="11">DATETIME</text>
+<text x="52" y="982" fill="#3B3F3A">usado_em</text>
+<text x="278" y="982" text-anchor="end" fill="#6F756C" font-size="11">DATETIME</text>
+<text x="40" y="1028" fill="#6F756C" font-size="11">Gerado por backend/gerar_docs.py a partir de src/db/models.py</text>
+</svg>

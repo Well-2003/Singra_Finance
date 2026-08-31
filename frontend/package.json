@@ -1,0 +1,22 @@
+{
+  "name": "singra-frontend",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Frontend estático do Singra: HTML, CSS e JavaScript puro, sem etapa de build.",
+  "comentario": "As dependências abaixo são só de desenvolvimento, para conferir o padrão do código. O site não precisa delas para rodar: as páginas em public/ abrem direto no navegador, do disco ou do GitHub Pages.",
+  "scripts": {
+    "conferir": "npm run conferir:js && npm run conferir:css",
+    "conferir:js": "eslint src/js --ignore-pattern src/vendor",
+    "conferir:css": "stylelint \"src/css/*.css\"",
+    "servir": "python -m http.server 5500"
+  },
+  "devDependencies": {
+    "eslint": "^9.13.0",
+    "stylelint": "^16.10.0",
+    "stylelint-config-standard": "^36.0.1"
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11"
+  ]
+}

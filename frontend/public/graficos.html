@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F6F1E7">
+    <meta name="description" content="Entenda para onde vai seu dinheiro.">
+    <title>Gráficos - Singra</title>
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../src/css/global.css">
+    <link rel="stylesheet" href="../src/css/dashboard.css">
+</head>
+<body data-area="sistema" data-pagina="graficos">
+<a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+<div class="app">
+
+    <!-- Desktop: menu lateral. Os itens são montados pelo navegacao.js -->
+    <aside class="menu-lateral">
+        <a class="marca" href="dashboard.html" data-marca></a>
+
+        <!-- O painel registra gasto e ganho na mesma tela, então o botão
+             não pode prometer só uma das duas coisas -->
+        <button type="button" class="botao botao-acao botao-largo"
+                data-abrir-adicionar aria-label="Adicionar gasto ou ganho">
+            <svg class="icone" aria-hidden="true"><use href="#i-mais"></use></svg>
+            Adicionar
+        </button>
+
+        <nav aria-label="Menu do Singra">
+            <ul class="menu-itens" data-menu-lateral></ul>
+        </nav>
+    </aside>
+
+    <div class="conteudo">
+        <main id="conteudo">
+            <div class="pagina">
+                <div class="cabecalho-pagina saudacao">
+                    <div>
+                        <h1>Seus gráficos</h1>
+                        <p class="legenda">Cada desenho responde a uma pergunta.</p>
+                    </div>
+                    <div class="navegador-mes" data-navegador-mes></div>
+                </div>
+
+                <!-- A espera do cold start ocupa este lugar até os dados chegarem -->
+                <div data-carregando hidden></div>
+
+                <div class="reserva" data-conteudo>
+                    <div class="reserva-cartao">
+                        <span class="esqueleto esqueleto-linha"></span>
+                        <span class="esqueleto esqueleto-linha"></span>
+                        <span class="esqueleto esqueleto-linha"></span>
+                    </div>
+                    <div class="reserva-cartao">
+                        <span class="esqueleto esqueleto-linha"></span>
+                        <span class="esqueleto esqueleto-linha"></span>
+                        <span class="esqueleto esqueleto-linha"></span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- Celular: barra inferior, com o [+] pêssego no centro -->
+<nav class="barra-inferior" aria-label="Menu do Singra" data-barra-inferior></nav>
+
+<!-- As páginas que não couberam na barra inferior -->
+<div class="fundo-escuro" data-fundo="menu-mais" hidden></div>
+<div class="painel" id="menu-mais" role="dialog" aria-modal="true"
+     aria-label="Mais opções" hidden>
+    <div class="painel-alca"></div>
+    <ul class="menu-itens" data-menu-mais></ul>
+    <button type="button" class="botao botao-suave botao-largo"
+            data-fechar-painel="menu-mais" style="margin-top:var(--e2)">Fechar</button>
+</div>
+
+<script src="../src/js/utils/format.js"></script>
+<script src="../src/js/utils/sessao.js"></script>
+<script src="../src/js/components/icones.js"></script>
+<script src="../src/js/components/navegacao.js"></script>
+<script src="../src/js/components/carregando.js"></script>
+<script src="../src/js/components/avisos.js"></script>
+<script src="../src/js/components/painel.js"></script>
+<script src="../src/js/components/mes.js"></script>
+<script src="../src/js/api/cliente.js"></script>
+<script src="../src/js/api/auth.js"></script>
+<script src="../src/js/api/transacoes.js"></script>
+<script src="../src/js/api/planejamento.js"></script>
+<script src="../src/js/api/graficos.js"></script>
+<script src="../src/js/api/perfil.js"></script>
+<script src="../src/js/components/painel-adicionar.js"></script>
+<!-- Chart.js baixado para dentro do projeto, sem depender de CDN -->
+<script src="../src/vendor/chart.umd.min.js"></script>
+<script src="../src/js/i18n/pt.js"></script>
+<script src="../src/js/i18n/en.js"></script>
+<script src="../src/js/i18n/es.js"></script>
+<script src="../src/js/i18n/idioma.js"></script>
+<script src="../src/js/paginas/graficos.js"></script>
+</body>
+</html>

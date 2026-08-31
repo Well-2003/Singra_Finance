@@ -1,0 +1,849 @@
+/* Singra - estilos das telas internas
+   O esqueleto da área logada: menu lateral no desktop, barra inferior no
+   celular, o botão pêssego que precisa estar sempre no mesmo lugar, e o
+   espaço reservado para o conteúdo enquanto a API ainda não respondeu.
+
+   Depende do global.css, que precisa vir antes. */
+
+/* ESQUELETO DA ÁREA LOGADA */
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+.conteudo {
+    flex: 1;
+    min-width: 0;
+    /* Espaço no fim para o conteúdo não terminar embaixo da barra inferior */
+    padding-bottom: calc(var(--altura-barra-inferior) + var(--e3));
+}
+
+@media (min-width: 900px) {
+    .conteudo { padding-bottom: var(--e4); }
+}
+
+/* MENU LATERAL (DESKTOP) */
+
+/* O menu acompanha a rolagem em vez de subir com a página. É o que
+   mantém o botão de adicionar sempre à mão no desktop, antes essa função
+   era de um botão flutuante no canto, que acabava por cima dos botões das
+   listas compridas. */
+.menu-lateral {
+    display: none;
+    width: var(--largura-menu);
+    flex: none;
+    padding: var(--e3) var(--e2);
+    border-right: 1px solid var(--cor-borda);
+    background: var(--cor-superficie);
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+.menu-lateral .marca { margin-bottom: var(--e3); }
+
+.menu-itens {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: var(--e3) 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menu-itens li { margin: 0; }
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: var(--e2);
+    min-height: var(--altura-botao);
+    padding: 0 var(--e2);
+    border-radius: var(--raio-botao);
+    color: var(--cor-texto);
+    font-weight: var(--peso-medio);
+    text-decoration: none;
+    transition: background var(--transicao);
+}
+
+.menu-item:hover { background: var(--cor-fundo); color: var(--cor-texto); }
+
+/* A página aberta se destaca pelo aria-current, que a própria navegação
+   escreve a partir do data-pagina do <body> */
+.menu-item[aria-current="page"] {
+    background: var(--cor-primaria-clara);
+    color: var(--cor-primaria-escura);
+    font-weight: var(--peso-forte);
+}
+
+/* BARRA INFERIOR (CELULAR) */
+
+/* Cinco itens, com o [+] pêssego maior e no centro. Fixa no rodapé porque
+   registrar um gasto precisa estar a um toque de qualquer tela. */
+.barra-inferior {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    height: var(--altura-barra-inferior);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    background: var(--cor-superficie);
+    border-top: 1px solid var(--cor-borda);
+}
+
+.barra-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    height: 100%;
+    min-height: var(--altura-botao);
+    padding: 0;
+    font-family: var(--fonte);
+    font-size: 12px;
+    font-weight: var(--peso-forte);
+    color: var(--cor-texto-suave);
+    background: none;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.barra-item[aria-current="page"] { color: var(--cor-primaria-escura); }
+
+/* A margem negativa faz o botão subir e sair da barra, ficando maior que
+   os vizinhos sem empurrar o resto do layout */
+.barra-mais {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    margin: -20px auto 0;
+    border: none;
+    border-radius: 50%;
+    background: var(--cor-acao);
+    color: var(--cor-acao-texto);
+    box-shadow: var(--sombra-flutuante);
+    cursor: pointer;
+}
+
+.barra-mais:hover { background: var(--cor-acao-hover); }
+.barra-mais svg { width: 30px; height: 30px; stroke-width: 2.4; }
+
+/* A TROCA ENTRE CELULAR E DESKTOP
+
+   Este bloco fica depois de todas as regras base de propósito. As três
+   trocas abaixo mexem em `display`, e as regras base também, com a mesma
+   especificidade. Se a media query viesse antes, a base ganharia por vir
+   depois na folha, e a barra inferior continuaria aparecendo no desktop. */
+@media (min-width: 900px) {
+    .menu-lateral { display: block; }
+    .barra-inferior { display: none; }
+}
+
+/* CABEÇALHO DAS TELAS INTERNAS */
+
+.saudacao h1 { margin-bottom: 4px; }
+
+/* Seletor de mês: seta, nome do mês, seta */
+.navegador-mes {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-redondo);
+}
+
+.navegador-mes a,
+.navegador-mes button,
+.navegador-mes span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 var(--e2);
+    border: none;
+    border-radius: var(--raio-redondo);
+    background: none;
+    font-family: var(--fonte);
+    font-size: var(--texto-legenda);
+    font-weight: var(--peso-forte);
+    color: var(--cor-texto);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navegador-mes a,
+.navegador-mes button { min-width: 40px; }
+.navegador-mes a:hover,
+.navegador-mes button:hover { background: var(--cor-primaria-clara); }
+
+/* Não há mês futuro para consultar: a seta fica apagada */
+.navegador-mes .desativado { opacity: 0.35; pointer-events: none; }
+
+/* O nome do mês é um botão, e precisa parecer um: a linha pontilhada
+   embaixo é o que avisa que dá para tocar nele e escolher outro */
+.mes-atual {
+    text-decoration: underline dotted var(--cor-texto-suave) !important;
+    text-underline-offset: 4px;
+}
+
+/* ESCOLHA DO MÊS */
+
+.seletor-ano {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--e2);
+    margin-bottom: var(--e2);
+    font-size: var(--texto-cartao);
+}
+
+.grade-meses {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--e1);
+}
+
+.mes-opcao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--altura-botao);
+    padding: 0 var(--e1);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-botao);
+    background: var(--cor-superficie);
+    color: var(--cor-texto);
+    font-weight: var(--peso-medio);
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: background var(--transicao), border-color var(--transicao);
+}
+
+.mes-opcao:hover { background: var(--cor-primaria-clara); }
+
+.mes-opcao.ativo {
+    border-color: var(--cor-primaria-escura);
+    background: var(--cor-primaria-clara);
+    color: var(--cor-primaria-escura);
+    font-weight: var(--peso-forte);
+}
+
+/* Mês que ainda não chegou continua na grade, para a lista não mudar de
+   tamanho, mas apagado e sem levar a lugar nenhum */
+.mes-opcao[aria-disabled="true"] {
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+/* GRADE DO PAINEL */
+
+.grade-painel { display: grid; gap: var(--e2); }
+
+@media (min-width: 760px) {
+    .grade-painel { grid-template-columns: 1fr 1fr; }
+    .grade-painel .largura-total { grid-column: 1 / -1; }
+}
+
+/* Cartão principal, o do número grande */
+.painel-principal { text-align: left; }
+.painel-principal .valor-grande { margin: 4px 0 var(--e2); }
+
+.entrou-saiu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e1) var(--e3);
+    margin-top: var(--e2);
+    font-size: var(--texto-legenda);
+    color: var(--cor-texto-suave);
+}
+
+.entrou-saiu b { color: var(--cor-texto); }
+
+/* ITENS DE LISTA */
+
+.item-lista {
+    display: flex;
+    align-items: center;
+    gap: var(--e2);
+    padding: var(--e1) 0;
+}
+
+/* A divisória entre itens é a única linha do site, e é fina de propósito */
+.item-lista + .item-lista { border-top: 1px solid var(--cor-borda); }
+
+.item-titulo { font-weight: var(--peso-forte); }
+.item-apoio { font-size: var(--texto-legenda); color: var(--cor-texto-suave); }
+
+/* ESPAÇO RESERVADO PARA O CONTEÚDO */
+
+/* Enquanto os dados não chegam, o lugar deles fica ocupado por blocos que
+   pulsam, no formato do que vai aparecer. É melhor que a tela em branco
+   do cold start, e evita o pulo de layout quando o conteúdo entra. */
+.reserva { display: grid; gap: var(--e2); }
+
+.reserva-cartao {
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-cartao);
+    padding: var(--e3);
+    display: grid;
+    gap: var(--e1);
+}
+
+.reserva-cartao .esqueleto-linha:nth-child(1) { width: 40%; }
+.reserva-cartao .esqueleto-linha:nth-child(2) { width: 70%; height: 34px; }
+.reserva-cartao .esqueleto-linha:nth-child(3) { width: 55%; }
+
+/* PAINEL DE ADICIONAR: OS TRÊS PASSOS */
+
+.mostrador {
+    padding: var(--e3) var(--e2);
+    text-align: center;
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-cartao);
+}
+
+.mostrador-valor {
+    font-size: var(--texto-valor);
+    font-weight: var(--peso-destaque);
+    letter-spacing: -0.02em;
+    color: var(--cor-texto);
+}
+
+.mostrador-vazio { color: var(--cor-texto-suave); }
+
+/* Teclas de 60px: dá para digitar com uma mão só, dentro do ônibus */
+.teclado {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--e1);
+    margin-top: var(--e2);
+}
+
+.tecla {
+    min-height: 60px;
+    font-family: var(--fonte);
+    font-size: 26px;
+    font-weight: var(--peso-forte);
+    color: var(--cor-texto);
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-botao);
+    cursor: pointer;
+    transition: background var(--transicao), transform var(--transicao);
+}
+
+.tecla:hover { background: var(--cor-primaria-clara); }
+.tecla:active { transform: scale(0.96); }
+.tecla-apagar svg { width: 26px; height: 26px; stroke-width: 2; }
+
+/* Alternador Gasto / Ganho: a mesma tela para os dois, para reduzir o
+   número de botões na navegação e a chance de tocar no lugar errado */
+.alternador {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    padding: 4px;
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-botao);
+}
+
+.alternador button {
+    min-height: 44px;
+    font-family: var(--fonte);
+    font-size: var(--texto-base);
+    font-weight: var(--peso-forte);
+    color: var(--cor-texto-suave);
+    background: transparent;
+    border: none;
+    border-radius: var(--raio-chip);
+    cursor: pointer;
+}
+
+.alternador button[aria-pressed="true"] {
+    background: var(--cor-primaria-clara);
+    color: var(--cor-primaria-escura);
+}
+
+/* Grade de categorias: ícone grande e nome embaixo, seis por vez */
+.grade-categorias {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--e1);
+}
+
+.categoria-alvo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-height: 104px;
+    padding: var(--e2) 6px;
+    font-family: var(--fonte);
+    font-size: var(--texto-legenda);
+    font-weight: var(--peso-forte);
+    color: var(--cor-texto);
+    text-align: center;
+    background: var(--cor-superficie);
+    border: 2px solid var(--cor-borda);
+    border-radius: var(--raio-cartao);
+    cursor: pointer;
+    transition: border-color var(--transicao), transform var(--transicao);
+}
+
+.categoria-alvo:hover { transform: translateY(-2px); }
+.categoria-alvo[aria-pressed="true"] { border-color: var(--cor-primaria-escura); }
+
+/* Campos opcionais ficam recolhidos até alguém pedir */
+.recolhivel {
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-botao);
+    background: var(--cor-superficie);
+    overflow: hidden;
+}
+
+.recolhivel > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: var(--altura-botao);
+    padding: 0 var(--e2);
+    font-weight: var(--peso-forte);
+    cursor: pointer;
+    list-style: none;
+}
+
+.recolhivel > summary::-webkit-details-marker { display: none; }
+.recolhivel > summary::after { content: "+"; font-size: 22px; color: var(--cor-texto-suave); }
+.recolhivel[open] > summary::after { content: "-"; }
+
+.recolhivel-corpo {
+    padding: var(--e2);
+    border-top: 1px solid var(--cor-borda);
+}
+
+/* ESCOLHA DE COR
+
+   Antes a cor era um ponto de 10px dentro de um chip: para distinguir dois
+   tons próximos de sálvia era preciso encostar o olho na tela. Agora cada
+   cor é um botão redondo grande, e a escolhida ganha um anel em volta.
+   Dá para ver de relance, e o alvo tem tamanho de dedo. */
+.paleta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e1);
+}
+
+.paleta input { position: absolute; opacity: 0; pointer-events: none; }
+
+.paleta label {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--raio-redondo);
+    background: var(--cor-escolha);
+    border: 2px solid var(--cor-borda);
+    cursor: pointer;
+    transition: transform var(--transicao), box-shadow var(--transicao);
+}
+
+.paleta label:hover { transform: scale(1.08); }
+
+.paleta input:checked + label {
+    border-color: var(--cor-texto);
+    box-shadow: 0 0 0 3px var(--cor-fundo), 0 0 0 5px var(--cor-texto);
+}
+
+.paleta input:focus-visible + label { box-shadow: var(--sombra-foco); }
+
+/* A cor do cartão dentro do chip de vínculo */
+.ponto-cor {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex: none;
+}
+
+
+/* ROSCA E LEGENDA */
+
+/* O giro de -90 graus faz a primeira fatia começar no topo */
+.rosca { width: 132px; height: 132px; flex: none; transform: rotate(-90deg); }
+.rosca circle { fill: none; stroke-width: 18; }
+
+.legenda-lista {
+    display: flex;
+    flex-direction: column;
+    gap: var(--e1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    /* Ao lado da rosca, a lista precisa poder encolher: é ela, e não o
+       desenho, que cede espaço quando a tela é estreita */
+    flex: 1;
+    min-width: 0;
+}
+
+.legenda-lista li {
+    display: flex;
+    align-items: center;
+    gap: var(--e1);
+    margin: 0;
+    font-size: var(--texto-legenda);
+    min-width: 0;
+}
+
+/* Nome comprido de categoria vira reticências, em vez de empurrar o valor
+   para fora do cartão */
+.legenda-lista .crescer {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.legenda-cor {
+    width: 12px;
+    height: 12px;
+    flex: none;
+    border-radius: 4px;
+    background: var(--cor-cat, var(--cat-outros));
+}
+
+/* A frase que explica cada gráfico, logo abaixo dele */
+.frase-grafico {
+    margin: var(--e2) 0 0;
+    padding-top: var(--e2);
+    border-top: 1px solid var(--cor-borda);
+    font-size: var(--texto-legenda);
+    color: var(--cor-texto-suave);
+}
+
+/* COMPARAÇÃO COM O MÊS ANTERIOR */
+
+.comparacao {
+    display: flex;
+    align-items: center;
+    gap: var(--e2);
+    padding: var(--e3);
+    border-radius: var(--raio-cartao);
+    background: var(--cor-primaria-clara);
+}
+
+/* Gastar mais que no mês passado é mel, nunca vermelho */
+.comparacao-mais { background: color-mix(in srgb, var(--cor-atencao) 25%, white); }
+.comparacao-seta { font-size: 30px; line-height: 1; }
+
+/* GUARDADO ESTE MÊS */
+
+.cartao-guardado .circulo { margin-right: var(--e1); }
+
+/* Alerta de sobra: sugere guardar a folga perto do fim do período.
+   Os botões agem; o X apenas dispensa, sem mover valor nenhum. */
+.alerta-sobra {
+    position: relative;
+    margin-top: var(--e2);
+    padding: var(--e2) var(--e3) var(--e2) var(--e2);
+    background: var(--cor-primaria-clara);
+    border-radius: var(--raio-botao);
+}
+
+.alerta-sobra p { margin: 0 0 var(--e2); font-size: var(--texto-legenda); }
+
+.alerta-fechar {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    color: var(--cor-texto-suave);
+    background: none;
+    border: none;
+    border-radius: var(--raio-chip);
+    cursor: pointer;
+}
+
+.alerta-fechar:hover { background: var(--cor-superficie); color: var(--cor-texto); }
+.alerta-fechar svg { width: 18px; height: 18px; }
+
+
+/* HISTÓRICO */
+
+.dia-titulo {
+    margin: var(--e3) 0 var(--e1);
+    font-size: var(--texto-legenda);
+    font-weight: var(--peso-forte);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--cor-texto-suave);
+}
+
+/* O total acompanha a rolagem: a pergunta "quanto deu no período" fica
+   respondida a qualquer altura da lista */
+/* Resumo do período, no topo da lista do histórico.
+
+   Já foi uma barra grudada no rodapé. Somada à barra de navegação, que é
+   fixa, ela deixava duas faixas permanentes por cima dos cartões, e sempre
+   havia um registro escondido atrás de uma delas. */
+.resumo-periodo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e1) var(--e3);
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--e3);
+}
+
+.filtros-avancados {
+    display: grid;
+    gap: var(--e2);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    align-items: end;
+}
+
+/* ORÇAMENTO */
+
+/* Ícone, nome e valor na primeira faixa. Barra e apoio ocupam a largura
+   toda, embaixo. */
+.linha-orcamento {
+    display: grid;
+    gap: var(--e1) var(--e2);
+    grid-template-columns: 44px 1fr auto;
+    align-items: center;
+    padding: var(--e2) 0;
+}
+
+.linha-orcamento + .linha-orcamento { border-top: 1px solid var(--cor-borda); }
+.linha-orcamento .barra { grid-column: 1 / -1; }
+
+.linha-orcamento .apoio {
+    grid-column: 1 / -1;
+    font-size: var(--texto-legenda);
+    color: var(--cor-texto-suave);
+}
+
+/* A versão só de leitura, da tela de Gráficos: sem campo para digitar, os
+   valores cabem embaixo do nome em vez de disputarem a linha com ele */
+.linha-resumo { grid-template-columns: 44px 1fr; }
+
+.linha-resumo > .bolha { grid-row: span 2; align-self: start; }
+
+.linha-resumo .orcamento-nome { grid-column: 2; grid-row: 1; min-width: 0; }
+
+.linha-resumo .orcamento-valores {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: var(--texto-legenda);
+    color: var(--cor-texto-suave);
+}
+
+.entrada-limite {
+    width: 130px;
+    min-height: 44px;
+    padding: 0 var(--e1);
+    font-family: var(--fonte);
+    font-size: var(--texto-base);
+    font-weight: var(--peso-forte);
+    text-align: right;
+    color: var(--cor-texto);
+    background: var(--cor-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-chip);
+}
+
+.entrada-limite:focus {
+    outline: none;
+    border-color: var(--cor-primaria-escura);
+    box-shadow: var(--sombra-foco);
+}
+
+/* Piscada verde confirmando que salvou, já que não há botão de salvar */
+.entrada-limite.salvo {
+    border-color: var(--cor-primaria);
+    background: var(--cor-primaria-clara);
+}
+
+/* METAS */
+
+.cartao-meta { display: flex; gap: var(--e2); align-items: flex-start; }
+.cartao-meta .crescer { min-width: 0; }
+.meta-conquistada { background: var(--cor-primaria-clara); border-color: transparent; }
+
+.selo-conquista {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px var(--e1);
+    border-radius: var(--raio-redondo);
+    background: var(--cor-superficie);
+    font-size: var(--texto-legenda);
+    font-weight: var(--peso-forte);
+    color: var(--cor-primaria-escura);
+}
+
+/* Escolha do desenho da meta: o radio fica invisível e o rótulo é o alvo */
+.grade-icones {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+    gap: var(--e1);
+}
+
+.grade-icones input { position: absolute; opacity: 0; }
+
+.grade-icones label {
+    display: grid;
+    place-items: center;
+    min-height: 60px;
+    border: 2px solid var(--cor-borda);
+    border-radius: var(--raio-botao);
+    cursor: pointer;
+}
+
+.grade-icones input:checked + label {
+    border-color: var(--cor-primaria-escura);
+    background: var(--cor-primaria-clara);
+}
+
+/* CONTAS A PAGAR */
+
+.grupo-contas + .grupo-contas { margin-top: var(--e3); }
+
+.grupo-titulo {
+    display: flex;
+    align-items: center;
+    gap: var(--e1);
+    margin-bottom: var(--e1);
+    font-size: var(--texto-legenda);
+    font-weight: var(--peso-forte);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--cor-texto-suave);
+}
+
+/* A conta em grade, e não em linha: no celular a descrição precisa de duas
+   linhas, e num flex o valor ficava ao lado da primeira delas, com a segunda
+   passando por baixo. Em grade cada coisa tem a sua célula. */
+.cartao-conta {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--e1) var(--e2);
+    align-items: center;
+}
+
+.cartao-conta > .bolha { grid-row: span 3; align-self: start; }
+
+.cartao-conta .conta-nome { grid-column: 2; grid-row: 1; min-width: 0; }
+
+/* O valor fecha a primeira linha, alinhado à direita, onde o olho procura
+   dinheiro */
+.cartao-conta .conta-valor {
+    grid-column: 3;
+    grid-row: 1;
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* A linha de apoio atravessa as duas colunas: espremida ao lado do valor,
+   ela quebrava no meio da data */
+.cartao-conta .conta-apoio { grid-column: 2 / -1; grid-row: 2; }
+
+.cartao-conta .acoes {
+    grid-column: 2 / -1;
+    grid-row: 3;
+    display: flex;
+    gap: var(--e1);
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* O botão cede espaço antes de a lixeira ir para a linha de baixo */
+.cartao-conta .acoes .botao-acao { min-width: 0; }
+
+/* GRÁFICOS */
+
+.grade-graficos { display: grid; gap: var(--e2); }
+
+@media (min-width: 860px) {
+    .grade-graficos { grid-template-columns: 1fr 1fr; }
+    .grade-graficos .largura-total { grid-column: 1 / -1; }
+}
+
+/* Um item de grade não encolhe abaixo do próprio conteúdo a não ser que se
+   mande. Sem isto, a largura que o Chart.js dá ao canvas vira o piso do
+   cartão, e a página inteira fica mais larga que a tela do celular. */
+.grade-graficos > *,
+.grade-painel > *,
+.grade-2 > *,
+.grade-3 > * { min-width: 0; }
+
+/* A altura fixa é o que permite ao Chart.js ser responsivo sem esticar */
+.grafico-caixa {
+    position: relative;
+    height: 280px;
+    width: 100%;
+    margin-top: var(--e2);
+}
+
+.grafico-caixa canvas { max-width: 100%; max-height: 100%; }
+
+/* PERFIL */
+
+/* Uma categoria ou um cartão da lista do perfil.
+
+   No celular os botões descem para baixo do nome. Em linha, "Renomear" e
+   "Esconder" ocupavam 192px dos 324 disponíveis e o nome ficava com 39.
+   "Moradia" saía quebrado no meio e "gasto · essencial" virava quatro
+   linhas. Na largura de um tablet para cima eles voltam para a direita, que
+   é onde cabem sem apertar nada. */
+.linha-categoria {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--e1) var(--e2);
+    align-items: center;
+    padding: var(--e2) 0;
+}
+
+.linha-categoria > .bolha,
+.linha-categoria > .ponto-cor { grid-row: span 2; align-self: center; }
+
+.linha-categoria > .crescer { grid-column: 2; }
+
+.linha-categoria > .acoes {
+    grid-column: 2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e1);
+}
+
+.linha-categoria + .linha-categoria { border-top: 1px solid var(--cor-borda); }
+
+/* Categoria escondida continua na lista, mais apagada, porque é de lá que
+   dá para trazê-la de volta */
+.linha-categoria.oculta { opacity: 0.6; }
+
+@media (min-width: 620px) {
+    .linha-categoria { grid-template-columns: auto 1fr auto; }
+    .linha-categoria > .bolha,
+    .linha-categoria > .ponto-cor { grid-row: auto; }
+    .linha-categoria > .acoes { grid-column: 3; grid-row: 1; }
+}
+
+.zona-perigo { border-color: color-mix(in srgb, var(--cor-gasto) 45%, var(--cor-borda)); }

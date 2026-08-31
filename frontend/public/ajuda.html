@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F6F1E7">
+    <meta name="description" content="Como usar o Singra: primeiros passos, tutoriais curtos, perguntas frequentes e um glossário sem economês.">
+    <title>Ajuda - Singra</title>
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../src/css/global.css">
+    <link rel="stylesheet" href="../src/css/publico.css">
+</head>
+<body data-area="publica" data-pagina="ajuda">
+<a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topo">
+    <div class="topo-interno">
+        <a class="marca" href="index.html" data-marca></a>
+        <nav class="topo-links" aria-label="Menu principal" data-menu-publico></nav>
+    </div>
+</header>
+
+<main id="conteudo">
+<section class="secao">
+    <h1>Ajuda</h1>
+    <p class="legenda">
+        Toda resposta cabe em poucas linhas. Se faltar alguma, escreva para a
+        gente lá embaixo.
+    </p>
+
+    <!-- A busca filtra as perguntas já escritas na página; não vai à API.
+         Assim ela responde no mesmo instante, inclusive com o backend
+         hibernando. -->
+    <div class="campo busca-ajuda">
+        <label for="busca">O que você quer saber?</label>
+        <input type="search" id="busca" data-busca
+               placeholder="parcelado, meta, senha…" autocomplete="off">
+        <span class="dica-campo" data-resultado-busca aria-live="polite"></span>
+    </div>
+
+    <div class="ajuda">
+        <nav class="ajuda-indice" aria-label="Assuntos da ajuda">
+            <ul>
+                <li><a href="#primeiros-passos">Primeiros passos</a></li>
+                <li><a href="#como-fazer">Como fazer</a></li>
+                <li><a href="#perguntas">Perguntas frequentes</a></li>
+                <li><a href="#glossario">Glossário</a></li>
+                <li><a href="#contato">Fale com a gente</a></li>
+            </ul>
+        </nav>
+
+        <div>
+
+        <!-- PRIMEIROS PASSOS -->
+        <section class="ajuda-grupo" id="primeiros-passos" data-grupo>
+            <h2>Primeiros passos</h2>
+            <div class="cartao" data-item
+                 data-texto="primeiros passos comecar criar conta registrar primeiro gasto">
+                <ol style="margin-left:var(--e3);display:grid;gap:var(--e1)">
+                    <li><strong>Crie sua conta</strong> com nome, e-mail e senha.</li>
+                    <li><strong>Diga quanto entra por mês</strong>, mais ou menos.
+                        Não precisa ser exato.</li>
+                    <li><strong>Aceite o planejamento sugerido</strong> ou pule
+                        essa parte.</li>
+                    <li><strong>Registre seu primeiro gasto</strong> tocando no
+                        botão pêssego.</li>
+                    <li><strong>Volte amanhã</strong> e registre de novo. É só isso.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- COMO FAZER -->
+        <section class="ajuda-grupo" id="como-fazer" data-grupo>
+            <h2>Como fazer</h2>
+
+            <details class="pergunta" data-item
+                     data-texto="registrar gasto adicionar despesa tres toques">
+                <summary>Como registrar um gasto</summary>
+                <div class="pergunta-resposta">
+                    <p>Toque no botão pêssego <strong>+ Adicionar</strong>.
+                    Digite o valor, escolha a categoria e confirme. São três
+                    toques: valor, categoria, pronto.</p>
+                    <p>A data vem preenchida com hoje e a forma de pagamento com
+                    Pix. Mudar isso é opcional.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="registrar ganho salario freela entrada dinheiro que entrou">
+                <summary>Como registrar um ganho (salário, freela)</summary>
+                <div class="pergunta-resposta">
+                    <p>É a mesma tela do gasto. No topo dela há um alternador
+                    <strong>Gasto / Ganho</strong>: toque em Ganho e siga igual.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="corrigir apagar editar errado engano excluir">
+                <summary>Como corrigir ou apagar algo que registrei errado</summary>
+                <div class="pergunta-resposta">
+                    <p>Vá em <strong>Histórico</strong> e toque no registro. Dá
+                    para mudar o valor, a categoria, a data e a descrição, ou
+                    apagar de vez.</p>
+                    <p>Nada é definitivo antes de você confirmar, e a confirmação
+                    sempre diz o que vai acontecer.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="parcelado parcelas cartao credito dividido vezes">
+                <summary>Como registrar uma compra parcelada</summary>
+                <div class="pergunta-resposta">
+                    <p>Ao registrar o gasto, abra <strong>Mais detalhes</strong> e
+                    informe o número de parcelas. O Singra cria uma parcela por
+                    mês, começando na data da compra.</p>
+                    <p>Cada mês mostra só a parcela daquele mês, para o seu
+                    "quanto posso gastar" não levar um susto de uma vez.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="gasto fixo repete todo mes aluguel internet recorrente">
+                <summary>Como registrar um gasto que se repete todo mês</summary>
+                <div class="pergunta-resposta">
+                    <p>Se é um valor fixo que você já paga (aluguel, internet),
+                    marque <strong>É um gasto fixo</strong> ao registrar.</p>
+                    <p>Se é um boleto com vencimento, prefira cadastrar em
+                    <strong>Contas a pagar</strong>: assim você é lembrado antes
+                    de vencer.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="meta objetivo guardar dinheiro juntar viagem sonho aporte">
+                <summary>Como criar uma meta e guardar dinheiro nela</summary>
+                <div class="pergunta-resposta">
+                    <p>Em <strong>Metas</strong>, toque em Nova meta e diga o nome,
+                    o valor que quer juntar e, se quiser, uma data.</p>
+                    <p>Depois, sempre que separar um dinheiro, use
+                    <strong>Guardar</strong> no cartão da meta. O círculo enche
+                    junto.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="meta de investimento frequencia cadencia diaria semanal mensal anual guardar por mes">
+                <summary>Como criar minha meta de investimento e escolher a frequência</summary>
+                <div class="pergunta-resposta">
+                    <p>É uma meta especial: em vez de um valor final, ela tem um
+                    valor por período. Em <strong>Metas</strong>, escolha
+                    <strong>Meta de investimento</strong>, informe o valor e a
+                    frequência: todo dia, toda semana, todo mês ou no ano.</p>
+                    <p>Quando o período acaba, ela se renova sozinha. E o valor
+                    guardado nunca sai do seu "posso gastar" sem você mandar.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="orcamento limite planejamento quanto gastar categoria 50 30 20">
+                <summary>Como definir quanto quero gastar em cada categoria</summary>
+                <div class="pergunta-resposta">
+                    <p>Vá em <strong>Planejamento</strong> e digite um valor ao
+                    lado de cada categoria. Salva sozinho ao sair do campo.</p>
+                    <p>Se preferir começar de um esboço, use
+                    <strong>Sugerir planejamento</strong>: ele divide sua renda em
+                    50% essencial, 30% escolhas e 20% para guardar.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="conta a pagar boleto vencimento lembrete luz agua aluguel">
+                <summary>Como cadastrar uma conta para não esquecer de pagar</summary>
+                <div class="pergunta-resposta">
+                    <p>Em <strong>Contas a pagar</strong>, cadastre a descrição, o
+                    valor e o vencimento. Se marcar "se repete todo mês", ao pagar
+                    já criamos a do mês seguinte.</p>
+                    <p>Marcar como paga registra o gasto no seu histórico
+                    automaticamente. Não precisa lançar duas vezes.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="cartao banco vincular nubank debito credito qual cartao">
+                <summary>Como cadastrar meus cartões e vincular um gasto a eles</summary>
+                <div class="pergunta-resposta">
+                    <p>Em <strong>Meu perfil</strong>, abra "Meus cartões e bancos"
+                    e cadastre o apelido de cada um. O Singra nunca pede número de
+                    cartão.</p>
+                    <p>Depois, ao registrar um gasto, aparece a opção de escolher
+                    de qual cartão ou conta ele saiu — vale para Pix, débito,
+                    crédito e boleto. Só dinheiro em espécie não tem o campo, por
+                    não sair de conta nenhuma. É opcional: quem não cadastra
+                    nenhum cartão nem vê essa pergunta.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="idioma lingua portugues ingles espanhol english espanol traduzir">
+                <summary>Como mudar o idioma do site</summary>
+                <div class="pergunta-resposta">
+                    <p>Em <strong>Meu perfil</strong>, no bloco Idioma, escolha
+                    entre português, inglês e espanhol.</p>
+                    <p>A escolha fica guardada na sua conta, e não neste aparelho:
+                    vale em qualquer computador ou celular em que você entrar.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="dia inicio mes financeiro salario dia 5 virada">
+                <summary>Como mudar o dia em que meu mês começa</summary>
+                <div class="pergunta-resposta">
+                    <p>Em <strong>Meu perfil</strong>, no campo "Meu mês financeiro
+                    começa no dia". Quem recebe no dia 5 costuma escolher 5.</p>
+                    <p>Todos os cálculos e gráficos passam a seguir esse ciclo, e
+                    não o calendário.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="categoria criar renomear esconder personalizar academia">
+                <summary>Como criar ou renomear uma categoria</summary>
+                <div class="pergunta-resposta">
+                    <p>Em <strong>Meu perfil</strong>, abra "Minhas categorias".
+                    Dá para criar uma nova com nome, desenho e cor, ou renomear
+                    qualquer uma.</p>
+                    <p>Categorias não são apagadas, e sim escondidas: os gastos
+                    que você já registrou precisam continuar apontando para
+                    alguma delas.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="baixar dados exportar csv planilha excel backup">
+                <summary>Como baixar meus dados</summary>
+                <div class="pergunta-resposta">
+                    <p>Em <strong>Meu perfil</strong>, no bloco "Seus dados são
+                    seus", toque em Baixar meus dados. Vem um arquivo CSV com
+                    todos os seus registros, que abre no Excel e no Google
+                    Planilhas.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="apagar conta excluir cancelar sair de vez deletar">
+                <summary>Como apagar minha conta</summary>
+                <div class="pergunta-resposta">
+                    <p>Em <strong>Meu perfil</strong>, no fim da página. Pedimos
+                    sua senha para confirmar, e aí some tudo: gastos, ganhos,
+                    metas, contas e planejamento.</p>
+                    <p>Não temos como recuperar depois. Se quiser guardar seu
+                    histórico, baixe o CSV antes.</p>
+                </div>
+            </details>
+        </section>
+
+        <!-- PERGUNTAS FREQUENTES -->
+        <section class="ajuda-grupo" id="perguntas" data-grupo>
+            <h2>Perguntas frequentes</h2>
+
+            <details class="pergunta" data-item
+                     data-texto="conecta banco open finance automatico importar extrato sincronizar">
+                <summary>O Singra se conecta com meu banco?</summary>
+                <div class="pergunta-resposta">
+                    <p>Não. Você registra os gastos manualmente. Isso leva alguns
+                    segundos e tem uma vantagem: você presta atenção no que está
+                    gastando.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="todo centavo precisao exato esquecer registrar tudo">
+                <summary>Preciso registrar todo centavo?</summary>
+                <div class="pergunta-resposta">
+                    <p>Não. Registre o que conseguir. O importante é a visão geral,
+                    não a precisão absoluta.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="cartao credito fatura quando registrar mes da compra">
+                <summary>Comprei no cartão de crédito. Registro agora ou quando a fatura chegar?</summary>
+                <div class="pergunta-resposta">
+                    <p>Registre agora, escolhendo <strong>Crédito</strong> como
+                    forma de pagamento. Assim você vê o gasto no mês em que ele
+                    aconteceu e não se surpreende com a fatura.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="gasto essencial o que e necessario moradia comida">
+                <summary>O que é "gasto essencial"?</summary>
+                <div class="pergunta-resposta">
+                    <p>É tudo que você precisa para viver: moradia, comida de
+                    mercado, transporte, saúde, contas da casa. O resto é
+                    importante também, mas é escolha.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="regra 50 30 20 divisao renda metodo">
+                <summary>O que é a regra 50/30/20?</summary>
+                <div class="pergunta-resposta">
+                    <p>Uma sugestão simples de divisão da renda: metade para o
+                    essencial, 30% para o que você gosta, 20% para guardar ou
+                    pagar dívidas. É um ponto de partida; você pode ajustar.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="reserva de emergencia imprevisto 3 6 meses colchao">
+                <summary>O que é reserva de emergência?</summary>
+                <div class="pergunta-resposta">
+                    <p>Um dinheiro guardado para imprevistos: perder o emprego, um
+                    problema de saúde, o carro quebrar. O ideal é ter de 3 a 6
+                    meses dos seus gastos essenciais.</p>
+                    <p>O Singra calcula esse valor para você na tela de Metas.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="esqueci senha recuperar redefinir link email">
+                <summary>Esqueci minha senha.</summary>
+                <div class="pergunta-resposta">
+                    <p>Na tela de entrada, toque em
+                    <a href="recuperar-senha.html">Esqueci minha senha</a> e a
+                    gente manda um link para o seu e-mail.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="seguranca dados privacidade senha criptografada quem ve">
+                <summary>Meus dados estão seguros?</summary>
+                <div class="pergunta-resposta">
+                    <p>Sua senha é guardada de forma criptografada — nem a gente
+                    consegue ver — e só você tem acesso aos seus registros.</p>
+                    <p>Não vendemos nem compartilhamos nada. E você pode baixar ou
+                    apagar tudo quando quiser, em Meu perfil.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="computador celular sincronizado mesmo site aplicativo app">
+                <summary>Posso usar no computador e no celular?</summary>
+                <div class="pergunta-resposta">
+                    <p>Sim, é o mesmo site nos dois. Seus dados ficam
+                    sincronizados: basta entrar com a mesma conta.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="errei valor corrigir historico mudar">
+                <summary>Errei um valor. E agora?</summary>
+                <div class="pergunta-resposta">
+                    <p>Vá em Histórico, toque no gasto e corrija. Sem estresse.</p>
+                </div>
+            </details>
+
+            <details class="pergunta" data-item
+                     data-texto="demora carregar lento primeiro acesso do dia acordar servidor">
+                <summary>Por que às vezes o site demora alguns segundos para abrir?</summary>
+                <div class="pergunta-resposta">
+                    <p>No primeiro acesso do dia, o servidor pode estar
+                    hibernando e leva alguns segundos para acordar. Depois disso,
+                    tudo responde rápido.</p>
+                    <p>Enquanto isso a tela avisa que está buscando seus dados —
+                    não é travamento.</p>
+                </div>
+            </details>
+        </section>
+
+        <!-- GLOSSÁRIO -->
+        <section class="ajuda-grupo" id="glossario" data-grupo>
+            <h2>Glossário</h2>
+            <p class="legenda">O que cada palavra significa aqui dentro.</p>
+
+            <div class="cartao" style="margin-top:var(--e2)">
+                <div class="item-lista" data-item data-texto="gasto despesa saiu">
+                    <span class="crescer"><strong>Gasto</strong></span>
+                    <span class="item-apoio">Dinheiro que saiu</span>
+                </div>
+                <div class="item-lista" data-item data-texto="ganho entrada receita entrou">
+                    <span class="crescer"><strong>Ganho</strong></span>
+                    <span class="item-apoio">Dinheiro que entrou</span>
+                </div>
+                <div class="item-lista" data-item
+                     data-texto="quanto posso gastar disponivel sobra saldo">
+                    <span class="crescer"><strong>Quanto ainda posso gastar</strong></span>
+                    <span class="item-apoio">O que entrou menos o que saiu; se você
+                        tem planejamento, o que planejou menos o que gastou</span>
+                </div>
+                <div class="item-lista" data-item data-texto="categoria tipo do gasto">
+                    <span class="crescer"><strong>Categoria</strong></span>
+                    <span class="item-apoio">O tipo do gasto: alimentação,
+                        transporte, lazer…</span>
+                </div>
+                <div class="item-lista" data-item
+                     data-texto="planejamento orcamento limite">
+                    <span class="crescer"><strong>Planejamento</strong></span>
+                    <span class="item-apoio">Quanto você decidiu gastar em cada
+                        categoria no mês</span>
+                </div>
+                <div class="item-lista" data-item data-texto="gasto fixo aluguel internet">
+                    <span class="crescer"><strong>Gasto fixo</strong></span>
+                    <span class="item-apoio">Repete todo mês com o mesmo valor
+                        (aluguel, internet)</span>
+                </div>
+                <div class="item-lista" data-item data-texto="gasto variavel mercado lazer">
+                    <span class="crescer"><strong>Gasto variável</strong></span>
+                    <span class="item-apoio">Muda de mês para mês (mercado,
+                        lazer)</span>
+                </div>
+                <div class="item-lista" data-item data-texto="meta objetivo prazo">
+                    <span class="crescer"><strong>Meta</strong></span>
+                    <span class="item-apoio">Um objetivo com valor e prazo</span>
+                </div>
+                <div class="item-lista" data-item
+                     data-texto="reserva de emergencia imprevisto">
+                    <span class="crescer"><strong>Reserva de emergência</strong></span>
+                    <span class="item-apoio">Dinheiro guardado para
+                        imprevistos</span>
+                </div>
+                <div class="item-lista" data-item data-texto="parcelado vezes dividido">
+                    <span class="crescer"><strong>Parcelado</strong></span>
+                    <span class="item-apoio">Compra dividida em várias vezes</span>
+                </div>
+                <div class="item-lista" data-item
+                     data-texto="taxa de poupanca porcentagem guardado">
+                    <span class="crescer"><strong>Taxa de poupança</strong></span>
+                    <span class="item-apoio">Quanto % do que entrou você conseguiu
+                        guardar</span>
+                </div>
+                <div class="item-lista" data-item
+                     data-texto="meta de investimento cadencia ritmo frequencia">
+                    <span class="crescer"><strong>Meta de investimento</strong></span>
+                    <span class="item-apoio">O valor que você quer guardar em um
+                        ritmo escolhido por você: todo dia, toda semana, todo mês
+                        ou todo ano</span>
+                </div>
+                <div class="item-lista" data-item
+                     data-texto="cartao vinculado banco conta gasto no cartao">
+                    <span class="crescer"><strong>Cartão ou conta vinculado</strong></span>
+                    <span class="item-apoio">Marcar de qual cartão ou banco saiu um
+                        gasto, para ver o total de cada um</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- FALE COM A GENTE -->
+        <section class="ajuda-grupo" id="contato" data-grupo>
+            <h2>Fale com a gente</h2>
+            <div class="cartao" data-item
+                 data-texto="contato falar suporte email duvida reclamacao sugestao">
+                <p class="legenda">
+                    A gente responde em até 1 dia útil. Pode escrever do jeito
+                    que você fala.
+                </p>
+                <form data-form-contato style="margin-top:var(--e2)">
+                    <div class="campo"><label for="contato-nome">Seu nome</label>
+                        <input type="text" id="contato-nome" maxlength="100" required>
+                    </div>
+                    <div class="campo"><label for="contato-email">Seu e-mail</label>
+                        <input type="email" id="contato-email" required>
+                    </div>
+                    <div class="campo"><label for="contato-mensagem">Sua mensagem</label>
+                        <textarea id="contato-mensagem" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="botao botao-acao">Enviar mensagem</button>
+                    <p class="dica-campo">
+                        O botão abre o seu programa de e-mail com a mensagem já
+                        escrita, endereçada a ola@singra.com.br. Assim você tem
+                        uma cópia do que mandou.
+                    </p>
+                </form>
+            </div>
+        </section>
+
+        <div class="sem-resultado" data-sem-resultado hidden>
+            <h3>Não encontramos nada com essa palavra</h3>
+            <p>Tente outra, ou escreva para <strong>ola@singra.com.br</strong>.</p>
+        </div>
+
+        </div>
+    </div>
+</section>
+</main>
+
+<footer class="rodape">
+    <div class="rodape-interno">
+        <div>
+            <a class="marca" href="index.html" data-marca></a>
+            <p style="margin-top:8px">Seu dinheiro, organizado sem planilha.</p>
+        </div>
+        <nav aria-label="Links do rodapé">
+            <span class="rodape-titulo">O Singra</span>
+            <ul class="lista-limpa">
+                <li><a href="sobre.html">Sobre nós</a></li>
+                <li><a href="ajuda.html">Ajuda</a></li>
+                <li><a href="cadastro.html">Criar conta</a></li>
+                <li><a href="login.html">Entrar</a></li>
+            </ul>
+        </nav>
+        <div>
+            <span class="rodape-titulo">Fale com a gente</span>
+            <ul class="lista-limpa">
+                <li><a href="mailto:ola@singra.com.br">ola@singra.com.br</a></li>
+                <li>Curitiba, PR</li>
+                <li>@singra.app</li>
+            </ul>
+        </div>
+    </div>
+    <p class="rodape-assinatura">&copy; 2026 Singra &middot; Projeto de estudo</p>
+</footer>
+
+<script src="../src/js/utils/sessao.js"></script>
+<script src="../src/js/components/icones.js"></script>
+<script src="../src/js/components/navegacao.js"></script>
+<script src="../src/js/i18n/pt.js"></script>
+<script src="../src/js/i18n/en.js"></script>
+<script src="../src/js/i18n/es.js"></script>
+<script src="../src/js/i18n/idioma.js"></script>
+<script src="../src/js/paginas/ajuda.js"></script>
+</body>
+</html>

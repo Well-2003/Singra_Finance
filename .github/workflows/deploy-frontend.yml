@@ -1,0 +1,58 @@
+# Singra - publicação do frontend no GitHub Pages
+#
+# Publica a pasta frontend/ inteira a cada envio para a branch main. Sobe a
+# pasta toda, e não só public/, porque as páginas buscam o CSS e o
+# JavaScript em ../src/ — os mesmos caminhos que funcionam quando alguém
+# abre o arquivo direto do disco. O frontend/index.html na raiz redireciona
+# para public/index.html, então o endereço do site cai na página inicial.
+#
+# Não há etapa de build: o site é HTML, CSS e JavaScript puro.
+#
+# Para ligar, uma vez só, no repositório:
+#   Settings > Pages > Build and deployment > Source: GitHub Actions
+
+name: Publicar frontend
+
+on:
+  push:
+    branches: [main]
+    # Um envio que mexe só no backend não republica o site
+    paths:
+      - "frontend/**"
+      - ".github/workflows/deploy-frontend.yml"
+  # Permite publicar na mão pela aba Actions
+  workflow_dispatch:
+
+# Concede ao workflow o direito de publicar no Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Duas publicações ao mesmo tempo se atrapalhariam; a mais nova espera a vez
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v4
+
+      - name: Preparar o Pages
+        uses: actions/configure-pages@v5
+
+      - name: Empacotar a pasta frontend
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend
+
+      - name: Publicar
+        id: deploy
+        uses: actions/deploy-pages@v4

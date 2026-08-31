@@ -1,0 +1,1128 @@
+/* Singra - variáveis, reset e componentes
+   Toda cor, tamanho e espaço do site nasce aqui. Os outros arquivos de
+   estilo usam apenas estas variáveis, nunca valores soltos, para que trocar
+   uma cor no futuro seja uma alteração em um lugar só.
+   Deve ser o primeiro arquivo carregado em qualquer página. */
+
+:root {
+    /* Verdes da marca */
+    --cor-primaria: #9CAF88;         /* sálvia: barras, ícones ativos, ganhos */
+    --cor-primaria-escura: #6F8A62;  /* usada em texto, por causa do contraste */
+    --cor-primaria-clara: #DCE5D3;   /* fundo dos cartões em destaque */
+
+    /* Superfícies */
+    --cor-fundo: #F6F1E7;            /* areia: o fundo de todas as páginas */
+    --cor-superficie: #FFFDF9;       /* linho: fundo dos cartões */
+    --cor-borda: #E6DFD1;
+
+    /* Ação
+       O pêssego é reservado para uma ação por tela. Havendo dois botões,
+       só o principal é pêssego; o secundário é contorno sálvia. */
+    --cor-acao: #F4A27A;
+    --cor-acao-hover: #E48D63;
+    --cor-acao-texto: #4A2A18;
+
+    /* Texto */
+    --cor-texto: #3B3F3A;
+    --cor-texto-suave: #6F756C;
+
+    /* Significado
+       Vermelho puro é proibido em qualquer parte do site: a terracota
+       comunica o mesmo sem soar como bronca. */
+    --cor-gasto: #D08B7B;
+    --cor-gasto-escura: #A85F4E;     /* mesma família, com contraste de texto */
+    --cor-atencao: #E3B65C;
+    --cor-atencao-escura: #8A6716;
+    --cor-sucesso: #9CAF88;
+    --cor-sucesso-escura: #52704A;
+
+    /* Cores das categorias
+       Tons suaves que convivem com o sálvia e o pêssego nos gráficos. */
+    --cat-moradia: #8FA3B8;
+    --cat-alimentacao: #C9A86A;
+    --cat-transporte: #7FA9A3;
+    --cat-saude: #D9A0A8;
+    --cat-contas: #A99BC0;
+    --cat-lazer: #F4A27A;
+    --cat-delivery: #E0B15A;
+    --cat-compras: #B88C9E;
+    --cat-assinaturas: #9CB0C8;
+    --cat-educacao: #8FB0A0;
+    --cat-pets: #C4A484;
+    --cat-outros: #B5B5A8;
+
+    /* Tipografia
+       Nunito tem terminais arredondados, o que reforça o acolhimento, e é
+       gratuita. O texto corrido fica em 17px, acima do padrão de 16, porque
+       o público tem dificuldade de leitura em tela. */
+    --fonte: "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --texto-valor: 48px;             /* o número grande do painel */
+    --texto-titulo: 28px;
+    --texto-cartao: 18px;
+    --texto-base: 17px;
+    --texto-legenda: 14px;           /* tamanho mínimo permitido */
+
+    --peso-normal: 400;
+    --peso-medio: 600;
+    --peso-forte: 700;
+    --peso-destaque: 800;
+
+    /* Formas */
+    --raio-cartao: 16px;
+    --raio-botao: 12px;
+    --raio-chip: 10px;
+    --raio-redondo: 999px;
+    --sombra-cartao: 0 2px 12px rgba(59, 63, 58, 0.06);
+    --sombra-flutuante: 0 8px 28px rgba(59, 63, 58, 0.16);
+    --sombra-foco: 0 0 0 3px rgba(111, 138, 98, 0.35);
+
+    /* Escala de espaçamento, em múltiplos de 8px.
+
+       Os degraus são estes e só estes: 1, 2, 3, 4, 5, 6 e 8. Usar um que
+       não existe, --e7, por exemplo, não dá erro em lugar nenhum: o
+       navegador descarta a declaração inteira e o espaço simplesmente não
+       aparece. Foi o que aconteceu com o rodapé até o --e5 entrar aqui. */
+    --e1: 8px;
+    --e2: 16px;
+    --e3: 24px;
+    --e4: 32px;
+    --e5: 40px;
+    --e6: 48px;
+    --e8: 64px;
+
+    /* Medidas de toque
+       Nada exige precisão de clique: 48px é o mínimo de qualquer alvo. */
+    --altura-botao: 48px;
+    --altura-campo: 52px;
+    --largura-conteudo: 1080px;
+    --largura-menu: 248px;
+    --altura-barra-inferior: 76px;
+
+    /* Movimento */
+    --transicao: 160ms ease;
+}
+
+/* Quem pede menos movimento no sistema não vê animação aqui */
+@media (prefers-reduced-motion: reduce) {
+    :root { --transicao: 0ms; }
+
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* No celular só os tamanhos grandes encolhem: o texto corrido continua em 17px */
+@media (max-width: 640px) {
+    :root {
+        --texto-valor: 40px;
+        --texto-titulo: 24px;
+    }
+}
+
+/* RESET E TIPOGRAFIA */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: var(--fonte);
+    font-size: var(--texto-base);
+    line-height: 1.55;
+    color: var(--cor-texto);
+    background: var(--cor-fundo);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+    margin: 0 0 var(--e2);
+    font-weight: var(--peso-forte);
+    line-height: 1.25;
+}
+
+h1 { font-size: var(--texto-titulo); }
+h2 { font-size: 22px; }
+h3 { font-size: var(--texto-cartao); }
+
+p { margin: 0 0 var(--e2); }
+p:last-child { margin-bottom: 0; }
+
+a {
+    color: var(--cor-primaria-escura);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+a:hover { color: var(--cor-texto); }
+
+img, svg { max-width: 100%; }
+
+ul, ol { margin: 0 0 var(--e2); padding-left: var(--e3); }
+li { margin-bottom: var(--e1); }
+
+small, .legenda {
+    font-size: var(--texto-legenda);
+    color: var(--cor-texto-suave);
+}
+
+strong { font-weight: var(--peso-forte); }
+
+/* ACESSIBILIDADE */
+
+/* Contorno de foco visível em todo lugar, para navegação por teclado */
+:focus-visible {
+    outline: 3px solid var(--cor-primaria-escura);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Texto que só o leitor de tela enxerga */
+.so-leitor {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Link que pula direto para o conteúdo, visível apenas ao receber foco */
+.pular-conteudo {
+    position: absolute;
+    left: var(--e2);
+    top: -100px;
+    z-index: 100;
+    padding: var(--e1) var(--e2);
+    background: var(--cor-superficie);
+    border-radius: var(--raio-botao);
+    box-shadow: var(--sombra-flutuante);
+    transition: top var(--transicao);
+}
+
+.pular-conteudo:focus { top: var(--e2); }
+
+/* LAYOUT */
+
+.pagina {
+    max-width: var(--largura-conteudo);
+    margin: 0 auto;
+    padding: var(--e3) var(--e2) var(--e8);
+}
+
+.cabecalho-pagina {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--e2);
+    margin-bottom: var(--e3);
+    flex-wrap: wrap;
+}
+
+.empilhado > * + * { margin-top: var(--e2); }
+.empilhado-largo > * + * { margin-top: var(--e3); }
+
+/* A linha quebra quando não cabe. Sem isso, um cartão com gráfico ao lado
+   de uma lista força a página inteira a ficar mais larga que a tela do
+   celular, e o site passa a arrastar para o lado. */
+.linha {
+    display: flex;
+    align-items: center;
+    gap: var(--e2);
+    flex-wrap: wrap;
+}
+
+.linha-entre {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--e2);
+}
+
+/* As grades se reorganizam sozinhas: uma coluna no celular, mais no desktop */
+.grade-2 {
+    display: grid;
+    gap: var(--e2);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.grade-3 {
+    display: grid;
+    gap: var(--e2);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* Palavra longa demais quebra em vez de esticar a caixa que a contém.
+   É break-word, e não anywhere: anywhere também encolhe a largura mínima da
+   caixa, e aí o navegador passa a quebrar nomes curtos que cabiam. */
+body { overflow-wrap: break-word; }
+
+.centro { text-align: center; }
+.direita { text-align: right; }
+.crescer { flex: 1; min-width: 0; }
+[hidden] { display: none !important; }
+
+/* CARTÕES */
+
+.cartao {
+    /* Nenhum cartão passa da largura de quem o contém, doa a quem doer o
+       conteúdo de dentro */
+    max-width: 100%;
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-cartao);
+    box-shadow: var(--sombra-cartao);
+    padding: var(--e3);
+}
+
+.cartao-destaque {
+    background: var(--cor-primaria-clara);
+    border-color: transparent;
+}
+
+.cartao-compacto { padding: var(--e2); }
+
+.cartao-titulo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--e2);
+    margin-bottom: var(--e2);
+}
+
+.cartao-titulo h2,
+.cartao-titulo h3 {
+    margin: 0;
+    font-size: var(--texto-cartao);
+}
+
+.cartao-link {
+    font-size: var(--texto-legenda);
+    font-weight: var(--peso-forte);
+    white-space: nowrap;
+}
+
+/* Cartão clicável: cada gasto do histórico é um destes */
+.cartao-toque {
+    display: flex;
+    align-items: center;
+    gap: var(--e2);
+    width: 100%;
+    min-height: var(--altura-botao);
+    padding: var(--e2);
+    text-align: left;
+    font: inherit;
+    color: inherit;
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-cartao);
+    cursor: pointer;
+    transition: transform var(--transicao), box-shadow var(--transicao);
+}
+
+.cartao-toque:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--sombra-cartao);
+}
+
+/* O cartão de um gasto ou ganho, que tem sempre as mesmas quatro partes.
+   Em grade, e não em linha: no celular a descrição precisa de duas linhas,
+   e num flex a segunda passava por baixo do valor. */
+.cartao-registro {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 2px var(--e2);
+    align-items: center;
+}
+
+.cartao-registro > .bolha { grid-row: span 2; align-self: center; }
+.cartao-registro > .item-titulo { grid-column: 2; grid-row: 1; min-width: 0; }
+
+.cartao-registro > .valor-gasto,
+.cartao-registro > .valor-ganho {
+    grid-column: 3;
+    grid-row: 1;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.cartao-registro > .item-apoio { grid-column: 2 / -1; grid-row: 2; }
+
+/* BOTÕES */
+
+.botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--e1);
+    min-height: var(--altura-botao);
+    padding: 0 var(--e3);
+    font-family: var(--fonte);
+    font-size: var(--texto-base);
+    font-weight: var(--peso-forte);
+    line-height: 1;
+    color: var(--cor-texto);
+    background: transparent;
+    border: 2px solid transparent;
+    border-radius: var(--raio-botao);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background var(--transicao), border-color var(--transicao),
+                transform var(--transicao);
+}
+
+.botao:active { transform: scale(0.98); }
+.botao:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* O pêssego marca a ação principal, uma por tela */
+.botao-acao {
+    color: var(--cor-acao-texto);
+    background: var(--cor-acao);
+}
+
+.botao-acao:hover:not(:disabled) {
+    background: var(--cor-acao-hover);
+    color: var(--cor-acao-texto);
+}
+
+.botao-contorno {
+    color: var(--cor-primaria-escura);
+    border-color: var(--cor-primaria-escura);
+}
+
+.botao-contorno:hover { background: var(--cor-primaria-clara); }
+
+.botao-suave {
+    color: var(--cor-texto);
+    background: var(--cor-superficie);
+    border-color: var(--cor-borda);
+}
+
+.botao-suave:hover { background: var(--cor-primaria-clara); border-color: transparent; }
+
+/* Ações discretas, como apagar: existem, mas não chamam atenção */
+.botao-texto {
+    min-height: 40px;
+    padding: 0 var(--e1);
+    color: var(--cor-texto-suave);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.botao-texto:hover { color: var(--cor-texto); }
+
+.botao-largo { width: 100%; }
+
+/* Botão ocupado: o texto vira o de espera e uma marca gira ao lado. Sem
+   isso, uma chamada lenta à API parece que o toque não funcionou. */
+.botao[aria-busy="true"]::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: girando 700ms linear infinite;
+}
+
+@keyframes girando {
+    to { transform: rotate(360deg); }
+}
+
+/* CHIPS */
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e1);
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: var(--altura-botao);
+    padding: 0 var(--e2);
+    font-family: var(--fonte);
+    font-size: var(--texto-legenda);
+    font-weight: var(--peso-forte);
+    color: var(--cor-texto);
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-chip);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background var(--transicao), border-color var(--transicao);
+}
+
+.chip:hover { background: var(--cor-primaria-clara); }
+
+.chip[aria-pressed="true"],
+.chip.ativo {
+    background: var(--cor-primaria-clara);
+    border-color: var(--cor-primaria-escura);
+    color: var(--cor-primaria-escura);
+}
+
+/* ÍCONES */
+
+.icone {
+    width: 24px;
+    height: 24px;
+    flex: none;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.icone-grande { width: 30px; height: 30px; }
+
+/* A cor da categoria entra por style="--cor-cat: ...", vinda do banco.
+   O color-mix cria o fundo claro e o traço escuro a partir dela, sem
+   precisar de duas colunas de cor por categoria. */
+.bolha {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    flex: none;
+    border-radius: var(--raio-cartao);
+    background: color-mix(in srgb, var(--cor-cat, var(--cat-outros)) 22%, white);
+    color: color-mix(in srgb, var(--cor-cat, var(--cat-outros)) 75%, #2A2C28);
+}
+
+.bolha-grande { width: 60px; height: 60px; border-radius: 20px; }
+
+/* VALORES */
+
+.valor-grande {
+    display: block;
+    font-size: var(--texto-valor);
+    font-weight: var(--peso-destaque);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+}
+
+.valor-gasto { color: var(--cor-gasto-escura); font-weight: var(--peso-forte); }
+.valor-ganho { color: var(--cor-sucesso-escura); font-weight: var(--peso-forte); }
+
+/* BARRAS DE PROGRESSO */
+
+.barra {
+    height: 12px;
+    border-radius: var(--raio-redondo);
+    background: color-mix(in srgb, var(--cor-borda) 70%, white);
+    overflow: hidden;
+}
+
+.barra-trilha {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: var(--raio-redondo);
+    background: var(--cor-primaria);
+    transition: width 400ms ease;
+}
+
+/* Sálvia até 80%, mel até 100%, terracota acima disso */
+.barra-atencao .barra-trilha { background: var(--cor-atencao); }
+.barra-estourou .barra-trilha { background: var(--cor-gasto); }
+
+/* Círculo de progresso das metas, desenhado com gradiente cônico e sem
+   biblioteca. A porcentagem entra por style="--pct: 42". */
+.circulo {
+    width: 76px;
+    height: 76px;
+    flex: none;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: conic-gradient(
+        var(--cor-primaria) calc(var(--pct, 0) * 1%),
+        color-mix(in srgb, var(--cor-borda) 70%, white) 0
+    );
+}
+
+/* O miolo cobre o centro do gradiente e exibe o número */
+.circulo::after {
+    content: attr(data-pct);
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: var(--cor-superficie);
+    font-size: var(--texto-legenda);
+    font-weight: var(--peso-destaque);
+    color: var(--cor-primaria-escura);
+}
+
+/* BOLINHAS DE SITUAÇÃO */
+
+.bolinha {
+    width: 12px;
+    height: 12px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--cor-texto-suave);
+}
+
+.bolinha-hoje,
+.bolinha-proxima { background: var(--cor-atencao); }
+.bolinha-atrasada { background: var(--cor-gasto); }
+.bolinha-paga { background: var(--cor-primaria); }
+.bolinha-futura { background: var(--cor-borda); }
+
+/* CAMPOS DE FORMULÁRIO */
+
+.campo { margin-bottom: var(--e2); }
+
+/* Todo campo tem rótulo visível, nunca só o texto de exemplo dentro dele */
+.campo label,
+.rotulo {
+    display: block;
+    margin-bottom: 6px;
+    font-size: var(--texto-legenda);
+    font-weight: var(--peso-forte);
+    color: var(--cor-texto);
+}
+
+.campo input[type="text"],
+.campo input[type="email"],
+.campo input[type="password"],
+.campo input[type="number"],
+.campo input[type="date"],
+.campo input[type="search"],
+.campo select,
+.campo textarea,
+.entrada {
+    width: 100%;
+    min-height: var(--altura-campo);
+    padding: 0 var(--e2);
+    font-family: var(--fonte);
+    font-size: var(--texto-base);
+    color: var(--cor-texto);
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-chip);
+    transition: border-color var(--transicao), box-shadow var(--transicao);
+}
+
+.campo textarea { padding: var(--e2); min-height: 120px; resize: vertical; }
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus,
+.entrada:focus {
+    outline: none;
+    border-color: var(--cor-primaria-escura);
+    box-shadow: var(--sombra-foco);
+}
+
+.campo-erro input,
+.campo-erro select { border-color: var(--cor-gasto); }
+
+.aviso-campo {
+    display: block;
+    margin-top: 6px;
+    font-size: var(--texto-legenda);
+    font-weight: var(--peso-forte);
+    color: var(--cor-gasto-escura);
+}
+
+.dica-campo {
+    display: block;
+    margin-top: 6px;
+    font-size: var(--texto-legenda);
+    color: var(--cor-texto-suave);
+}
+
+/* Interruptor de sim ou não. O input fica invisível mas continua sendo ele
+   que recebe o foco e o clique, então teclado e leitor de tela funcionam. */
+.interruptor {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--e2);
+    min-height: var(--altura-botao);
+    padding: var(--e1) 0;
+    cursor: pointer;
+    font-weight: var(--peso-medio);
+}
+
+.interruptor input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.interruptor-trilha {
+    position: relative;
+    width: 56px;
+    height: 32px;
+    flex: none;
+    border-radius: var(--raio-redondo);
+    background: color-mix(in srgb, var(--cor-borda) 80%, white);
+    transition: background var(--transicao);
+}
+
+.interruptor-trilha::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--cor-superficie);
+    box-shadow: 0 1px 4px rgba(59, 63, 58, 0.25);
+    transition: transform var(--transicao);
+}
+
+.interruptor input:checked + .interruptor-trilha { background: var(--cor-primaria); }
+.interruptor input:checked + .interruptor-trilha::after { transform: translateX(24px); }
+.interruptor input:focus-visible + .interruptor-trilha { box-shadow: var(--sombra-foco); }
+
+.marcar {
+    display: flex;
+    align-items: center;
+    gap: var(--e1);
+    min-height: var(--altura-botao);
+    cursor: pointer;
+}
+
+.marcar input {
+    width: 22px;
+    height: 22px;
+    accent-color: var(--cor-primaria-escura);
+}
+
+/* Força da senha em três níveis */
+.forca-senha { display: flex; gap: 4px; margin-top: 8px; }
+
+.forca-marca {
+    flex: 1;
+    height: 6px;
+    border-radius: var(--raio-redondo);
+    background: var(--cor-borda);
+    transition: background var(--transicao);
+}
+
+.forca-fraca .forca-marca:nth-child(1) { background: var(--cor-gasto); }
+.forca-boa .forca-marca:nth-child(-n+2) { background: var(--cor-atencao); }
+.forca-otima .forca-marca { background: var(--cor-primaria); }
+
+/* AVISOS */
+
+.aviso {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--e1);
+    padding: var(--e2);
+    border-radius: var(--raio-botao);
+    background: var(--cor-primaria-clara);
+    color: var(--cor-texto);
+}
+
+.aviso-atencao { background: color-mix(in srgb, var(--cor-atencao) 25%, white); }
+.aviso-problema { background: color-mix(in srgb, var(--cor-gasto) 20%, white); }
+
+/* Pilha de confirmações que aparecem e somem sozinhas. Empilhar, em vez de
+   substituir, faz com que duas ações seguidas não engulam uma à outra. */
+.pilha-avisos {
+    position: fixed;
+    left: 50%;
+    bottom: calc(var(--altura-barra-inferior) + var(--e2));
+    transform: translateX(-50%);
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    gap: var(--e1);
+    align-items: center;
+    width: min(440px, calc(100vw - var(--e4)));
+    pointer-events: none;
+}
+
+@media (min-width: 900px) {
+    .pilha-avisos { bottom: var(--e3); }
+}
+
+.aviso-flutuante {
+    display: flex;
+    align-items: center;
+    gap: var(--e1);
+    width: 100%;
+    padding: var(--e2) var(--e3);
+    border-radius: var(--raio-redondo);
+    background: var(--cor-primaria-escura);
+    color: #FFFDF9;
+    font-weight: var(--peso-forte);
+    box-shadow: var(--sombra-flutuante);
+    animation: subindo var(--transicao) ease;
+}
+
+.aviso-flutuante.saindo { opacity: 0; transition: opacity var(--transicao); }
+.aviso-flutuante-problema { background: var(--cor-gasto-escura); }
+.aviso-flutuante-atencao { background: var(--cor-atencao-escura); }
+
+@keyframes subindo {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* PAINÉIS E MODAL */
+
+.fundo-escuro {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    background: rgba(59, 63, 58, 0.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transicao);
+}
+
+.fundo-escuro.aberto { opacity: 1; pointer-events: auto; }
+
+/* Sobe de baixo no celular e vira modal centralizado no desktop */
+.painel {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 80;
+    max-height: 92vh;
+    overflow-y: auto;
+    padding: var(--e3) var(--e2) var(--e4);
+    background: var(--cor-fundo);
+    border-radius: 24px 24px 0 0;
+    box-shadow: var(--sombra-flutuante);
+    transform: translateY(100%);
+    transition: transform 220ms ease;
+}
+
+.painel.aberto { transform: translateY(0); }
+
+.painel-alca {
+    width: 44px;
+    height: 5px;
+    margin: 0 auto var(--e2);
+    border-radius: var(--raio-redondo);
+    background: var(--cor-borda);
+}
+
+@media (min-width: 900px) {
+    .painel {
+        left: 50%;
+        right: auto;
+        bottom: auto;
+        top: 50%;
+        width: 520px;
+        border-radius: var(--raio-cartao);
+        transform: translate(-50%, -46%);
+        opacity: 0;
+        transition: opacity var(--transicao), transform var(--transicao);
+    }
+
+    .painel.aberto { transform: translate(-50%, -50%); opacity: 1; }
+    .painel-alca { display: none; }
+}
+
+/* Modal de confirmação: substitui o confirm() do navegador, que aparece
+   com a cara do sistema operacional e sempre em inglês. */
+.modal { width: min(420px, calc(100vw - var(--e4))); }
+.modal .acoes { display: flex; gap: var(--e1); margin-top: var(--e3); }
+.modal .acoes .botao { flex: 1; }
+
+/* ESTADOS DE CARREGAMENTO E VAZIO */
+
+/* Enquanto a API acorda, o lugar do conteúdo fica ocupado por uma marca
+   que pulsa. É melhor que a tela em branco do cold start do Render. */
+.esqueleto {
+    border-radius: var(--raio-cartao);
+    background: linear-gradient(90deg,
+        var(--cor-borda) 25%,
+        color-mix(in srgb, var(--cor-borda) 40%, white) 50%,
+        var(--cor-borda) 75%);
+    background-size: 200% 100%;
+    animation: pulsando 1.4s ease-in-out infinite;
+}
+
+.esqueleto-linha { height: 18px; margin-bottom: var(--e1); }
+.esqueleto-bloco { height: 120px; }
+
+@keyframes pulsando {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+}
+
+.carregando-tela {
+    display: grid;
+    place-items: center;
+    gap: var(--e2);
+    min-height: 50vh;
+    padding: var(--e4) var(--e2);
+    text-align: center;
+    color: var(--cor-texto-suave);
+}
+
+.carregando-marca {
+    width: 34px;
+    height: 34px;
+    border: 3px solid var(--cor-primaria-clara);
+    border-top-color: var(--cor-primaria);
+    border-radius: 50%;
+    animation: girando 900ms linear infinite;
+}
+
+.carregando-mensagem {
+    margin: 0;
+    font-size: var(--texto-cartao);
+    font-weight: var(--peso-forte);
+    color: var(--cor-texto);
+}
+
+/* A explicação do cold start começa escondida: só aparece se a espera
+   passar de alguns segundos, para não assustar quem nem chegou a esperar */
+.carregando-explicacao {
+    margin: 0;
+    max-width: 42ch;
+}
+
+/* Tela sem dados orienta o próximo passo, nunca diz apenas "vazio" */
+.vazio {
+    padding: var(--e4) var(--e2);
+    text-align: center;
+    color: var(--cor-texto-suave);
+}
+
+.vazio-figura {
+    /* Bloco, e não inline: é o display que faz o "margin: 0 auto" centrar */
+    display: block;
+    width: 96px;
+    height: 96px;
+    margin: 0 auto var(--e2);
+    stroke: var(--cor-primaria);
+    fill: none;
+    stroke-width: 1.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.vazio h3 { color: var(--cor-texto); margin-bottom: var(--e1); }
+
+/* MARCA, CABEÇALHO E RODAPÉ */
+
+.marca {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--e1);
+    font-size: 22px;
+    font-weight: var(--peso-destaque);
+    color: var(--cor-primaria-escura);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+}
+
+.marca svg { width: 32px; height: 32px; }
+
+.topo {
+    background: var(--cor-superficie);
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+.topo-interno {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--e2);
+    max-width: var(--largura-conteudo);
+    margin: 0 auto;
+    padding: var(--e2);
+}
+
+.topo-links {
+    display: flex;
+    align-items: center;
+    gap: var(--e1);
+    position: relative;
+}
+
+.topo-links a { text-decoration: none; }
+
+.topo-itens {
+    display: flex;
+    align-items: center;
+    gap: var(--e1);
+}
+
+/* O botão de abrir só existe no celular */
+.topo-abrir { display: none; }
+
+/* NO CELULAR O CABEÇALHO SE RECOLHE
+
+   Eram quatro botões (Sobre nós, Ajuda, Entrar e Criar conta grátis)
+   disputando a mesma linha com o logo. Aqui eles somem atrás de um "Menu"
+   e voltam empilhados, colados no cabeçalho, quando alguém toca. */
+@media (max-width: 720px) {
+    .topo-abrir { display: inline-flex; }
+
+    .topo-itens {
+        display: none;
+        position: absolute;
+        top: calc(100% + var(--e1));
+        right: 0;
+        z-index: 60;
+        flex-direction: column;
+        align-items: stretch;
+        min-width: 220px;
+        padding: var(--e1);
+        background: var(--cor-superficie);
+        border: 1px solid var(--cor-borda);
+        border-radius: var(--raio-cartao);
+        box-shadow: var(--sombra-flutuante);
+    }
+
+    .topo-itens.aberto { display: flex; }
+
+    /* Dentro do menu todo item ocupa a linha inteira: alvo grande e uma
+       coluna só de leitura */
+    .topo-itens .botao {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+
+/* O RODAPÉ
+
+   Três blocos que, numa tela larga, ficavam esparramados nas pontas com um
+   vão enorme no meio. Em grade eles ganham colunas de largura parecida, e
+   uma linha fina separa a assinatura do resto. */
+.rodape {
+    margin-top: var(--e8);
+    padding: var(--e5) var(--e2) var(--e4);
+    background: var(--cor-superficie);
+    border-top: 1px solid var(--cor-borda);
+    color: var(--cor-texto-suave);
+    font-size: var(--texto-legenda);
+}
+
+.rodape-interno {
+    display: grid;
+    gap: var(--e3);
+    max-width: var(--largura-conteudo);
+    margin: 0 auto;
+}
+
+.rodape .marca { font-size: 20px; }
+.rodape p { margin: 0; }
+.rodape a { color: var(--cor-texto-suave); text-decoration: none; }
+.rodape a:hover { color: var(--cor-primaria-escura); text-decoration: underline; }
+
+.rodape-titulo {
+    display: block;
+    margin-bottom: var(--e1);
+    font-weight: var(--peso-forte);
+    color: var(--cor-texto);
+}
+
+/* A assinatura fecha o rodapé, separada por uma linha e centrada */
+.rodape-assinatura {
+    max-width: var(--largura-conteudo);
+    margin: var(--e4) auto 0;
+    padding-top: var(--e2);
+    border-top: 1px solid var(--cor-borda);
+    text-align: center;
+}
+
+@media (min-width: 720px) {
+    .rodape-interno {
+        grid-template-columns: 1.4fr 1fr 1fr;
+        gap: var(--e5);
+        align-items: start;
+    }
+}
+
+.lista-limpa { margin: 0; padding: 0; list-style: none; }
+.lista-limpa li { margin: 0; }
+.lista-limpa li + li { margin-top: var(--e1); }
+
+/* TELAS DE ENTRADA E DE FOCO */
+
+/* Entrar, criar conta e recuperar senha: um cartão centralizado sobre o
+   fundo areia, sem menu nenhum. A tela tem uma tarefa só. */
+.tela-centro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: var(--e3) var(--e2);
+}
+
+.cartao-entrada { width: 100%; max-width: 440px; }
+.cartao-entrada .marca { margin-bottom: var(--e3); }
+
+/* Acesso de demonstração: presente, mas discreto. Quem já tem conta não
+   pode confundir esta caixa com o formulário de verdade. */
+.acesso-demo {
+    display: grid;
+    gap: 6px;
+    margin-top: var(--e3);
+    padding: var(--e2);
+    text-align: center;
+    background: var(--cor-fundo);
+    border: 1px dashed var(--cor-borda);
+    border-radius: var(--raio-botao);
+}
+
+.acesso-demo-titulo {
+    font-size: var(--texto-legenda);
+    font-weight: var(--peso-forte);
+    color: var(--cor-texto);
+}
+
+.acesso-demo-dados {
+    font-size: var(--texto-legenda);
+    color: var(--cor-texto-suave);
+}
+
+/* Primeiro acesso: uma pergunta por vez, sem navegação em volta para
+   competir com ela */
+.tela-foco {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: var(--e4) var(--e2) var(--e8);
+}
+
+.tela-foco h1 { font-size: 30px; margin-bottom: var(--e3); }
+
+/* Barra de progresso dos passos, no topo do onboarding e do painel de
+   adicionar */
+.passos {
+    display: flex;
+    gap: 6px;
+    margin-bottom: var(--e3);
+}
+
+.passo-marca {
+    flex: 1;
+    height: 6px;
+    border-radius: var(--raio-redondo);
+    background: var(--cor-borda);
+}
+
+.passo-marca.feito { background: var(--cor-primaria); }
