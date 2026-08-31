@@ -15,7 +15,7 @@ window.Api = (function (global) {
 
        Enquanto estiver vazio, as páginas abertas fora da sua máquina avisam
        que a API não foi configurada, em vez de falhar caladas. */
-    var API_PRODUCAO = "";
+    var API_PRODUCAO = "https://singra-api.onrender.com";
 
     var API_LOCAL = "http://127.0.0.1:5000";
     var HOSTS_LOCAIS = ["localhost", "127.0.0.1", ""];
