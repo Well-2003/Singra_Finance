@@ -256,6 +256,33 @@
 
 .pergunta-resposta p + p { margin-top: var(--e1); }
 
+/* O GLOSSÁRIO
+
+   Aqui a pessoa lê texto corrido, e não confere números, então as linhas
+   ganham mais respiro do que numa lista comum. No celular o termo fica em
+   cima e a explicação embaixo: lado a lado numa tela estreita sobrariam
+   duas colunas magras, cada palavra numa linha. */
+.glossario .item-lista {
+    display: block;
+    padding: var(--e2) 0;
+    line-height: 1.6;
+}
+
+.glossario .item-lista .item-apoio {
+    display: block;
+    margin-top: 2px;
+}
+
+@media (min-width: 720px) {
+    .glossario .item-lista {
+        display: flex;
+        align-items: baseline;
+        gap: var(--e3);
+    }
+
+    .glossario .item-lista .item-apoio { margin-top: 0; }
+}
+
 .busca-ajuda { margin-bottom: var(--e3); }
 
 .sem-resultado {

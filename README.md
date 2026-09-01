@@ -50,13 +50,14 @@ painel, seção Sobre nós e uma central de Ajuda com busca, tutoriais curtos,
 perguntas frequentes e um glossário sem economês.
 
 **Acesso e contas.** Cadastro com indicador de força da senha em três
-níveis, login, recuperação de senha por link com validade e uma conta de
-demonstração aberta na própria tela de entrada. Senhas gravadas com hash
-bcrypt e sessão por token assinado.
+níveis, login e recuperação de senha por link com validade. Senhas gravadas
+com hash bcrypt e sessão por token assinado.
 
-**Primeiro acesso.** Seis perguntas, uma por tela, todas puláveis: apelido,
-tipo de renda, renda extra, quanto quer guardar, com que frequência e se
-quer um planejamento sugerido.
+**Primeiro acesso.** Quem cria a conta cai direto no painel, com um convite
+para montar o planejamento e um atalho para seis perguntas opcionais:
+apelido, tipo de renda, renda extra, quanto quer guardar, com que
+frequência e se quer um planejamento sugerido. O convite se dispensa e não
+volta.
 
 **Registro de gastos e ganhos.** Painel deslizante em três passos, com
 teclado numérico próprio. Categoria, data, forma de pagamento, vínculo com
@@ -98,7 +99,9 @@ salário cai num mês e metade no outro, e nenhum número faz sentido.
 
 **Uma pergunta respondida, não um extrato.** O painel abre com um número
 grande: quanto ainda dá para gastar. Com planejamento, ele parte do limite
-que a pessoa combinou consigo mesma. Sem planejamento, parte do que entrou.
+que a pessoa combinou consigo mesma, somado ao que entrou além dele: um
+freela inesperado é dinheiro de verdade, e o limite não pode escondê-lo.
+Sem planejamento, parte do que entrou.
 
 **Cada gráfico já vem interpretado.** Abaixo do desenho há uma frase escrita
 pelo servidor, que tem os números: "Fique de olho em Saúde e Transporte.

@@ -25,7 +25,7 @@
         ["inicio",    "inicio",     "Início",         "dashboard.html"],
         ["historico", "historico",  "Histórico",      "historico.html"],
         ["graficos",  "graficos",   "Gráficos",       "graficos.html"],
-        ["orcamento", "orcamento",  "Orçamento",      "orcamento.html"],
+        ["orcamento", "orcamento",  "Planejamento",   "orcamento.html"],
         ["metas",     "meta",       "Metas",          "metas.html"],
         ["contas",    "calendario", "Contas a pagar", "contas.html", "Contas"],
         ["ajuda",     "ajuda",      "Ajuda",          "ajuda.html"],

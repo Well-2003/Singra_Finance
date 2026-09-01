@@ -30,7 +30,7 @@ window.TextosEN = {
         "Início": "Home",
         "Histórico": "History",
         "Gráficos": "Charts",
-        "Orçamento": "Budget",
+        "Planejamento": "Planning",
         "Metas": "Goals",
         "Contas": "Bills",
         "Contas a pagar": "Bills",
@@ -58,7 +58,8 @@ window.TextosEN = {
         "Ir para o meu painel": "Go to my dashboard",
         "Seu dinheiro, organizado sem planilha.":
             "Your money, sorted out without a spreadsheet.",
-        "© 2026 Singra · Curitiba, PR": "© 2026 Singra · Curitiba, Brazil",
+        "© 2026 Singra · Todos os direitos reservados":
+            "© 2026 Singra · All rights reserved",
         "Links do rodapé": "Footer links",
 
         // Loading, connection and session
@@ -119,7 +120,6 @@ window.TextosEN = {
         "Não precisa organizar o passado. Registre o café de hoje e o resto vai se montando sozinho.":
             "You do not have to sort out the past. Log today's coffee and the rest builds itself.",
         "Criar minha conta grátis": "Create my free account",
-        "tela de entrar": "sign-in screen",
 
         // Sign in, sign up and password recovery
         "Que bom te ver de novo": "Good to see you again",
@@ -131,8 +131,6 @@ window.TextosEN = {
         "Esqueci minha senha": "I forgot my password",
         "Ainda não tem conta?": "Don't have an account yet?",
         "Já tem conta?": "Already have an account?",
-        "Quer só dar uma olhada?": "Just want to take a look?",
-        "Entrar como demonstração": "Enter the demo account",
         "Vamos começar": "Let's get started",
         "Leva menos de um minuto. E é de graça.":
             "It takes less than a minute. And it is free.",
@@ -643,6 +641,8 @@ window.TextosEN = {
             "More went out than came in this month. Take a look at the bigger expenses.",
         "frase.disponivel.do_planejamento":
             "That is what is left of your {planejado} budget.",
+        "frase.disponivel.planejamento_e_extra":
+            "That is what is left of your {planejado} budget, plus {extra} that came in on top of it.",
         "frase.disponivel.entrou_saiu": "{ganhos} came in and {gastos} went out.",
 
         "frase.poupanca.acima":

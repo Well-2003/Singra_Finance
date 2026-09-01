@@ -4,12 +4,6 @@ Não gera nenhuma página: só recebe pedidos do frontend e devolve JSON. O
 frontend mora em outro domínio (GitHub Pages), então duas coisas precisam
 estar certas aqui, o CORS, que autoriza esse outro endereço a chamar a API,
 e o token, que substitui o cookie de sessão.
-
-Rodar em desenvolvimento, de dentro de backend/:
-    python -m src.main
-
-Em produção, no Render, o comando de inicialização é:
-    gunicorn --chdir backend "src.main:criar_app()"
 """
 
 import logging

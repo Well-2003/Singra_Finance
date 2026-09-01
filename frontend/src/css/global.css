@@ -132,6 +132,27 @@ html {
     -webkit-text-size-adjust: 100%;
 }
 
+/* O DOIS TOQUES QUE DAVA ZOOM
+
+   O Safari do iPhone espera cerca de 300 ms depois de cada toque para ver
+   se vem um segundo, porque dois toques seguidos são o atalho de aproximar
+   a página. Quem digita 4590 no teclado do Singra dá quatro toques rápidos,
+   e o navegador entendia isso como pedido de zoom.
+
+   `touch-action: manipulation` desliga o atalho de dois toques em quem
+   recebe clique, e só nele. Aproximar com dois dedos continua funcionando
+   na página inteira, que é o gesto de quem precisa enxergar melhor. */
+button,
+a,
+label,
+summary,
+input,
+select,
+textarea,
+[role="button"] {
+    touch-action: manipulation;
+}
+
 body {
     margin: 0;
     font-family: var(--fonte);
@@ -249,6 +270,26 @@ strong { font-weight: var(--peso-forte); }
     gap: var(--e2);
 }
 
+/* NUMA TELA ESTREITA, O BOTÃO DESCE EM VEZ DE ESPREMER O TEXTO
+
+   `.linha` já quebra em várias linhas, mas isso sozinho não bastava: o
+   `.crescer` do meio tem `min-width: 0` e encolhe até virar uma tira de
+   duas letras antes de a quebra acontecer, e era assim que a meta de
+   investimento aparecia amassada no celular.
+
+   Dando ao texto uma largura mínima de 55%, ele deixa de ceder e o botão é
+   quem não cabe mais na linha, indo para a de baixo em largura inteira. A
+   regra vale para o site todo, e não só para a tela onde o problema
+   apareceu. */
+@media (max-width: 560px) {
+    .linha > .crescer { flex: 1 1 55%; }
+
+    .linha > .botao {
+        flex: 1 1 100%;
+        justify-content: center;
+    }
+}
+
 /* As grades se reorganizam sozinhas: uma coluna no celular, mais no desktop */
 .grade-2 {
     display: grid;
@@ -357,6 +398,80 @@ body { overflow-wrap: break-word; }
 }
 
 .cartao-registro > .item-apoio { grid-column: 2 / -1; grid-row: 2; }
+
+/* ITENS DE LISTA E LEGENDAS
+   Ficam aqui, e não no dashboard.css, porque a página inicial e a
+   Ajuda também usam essas listas e não carregam o dashboard.css. */
+
+/* ITENS DE LISTA */
+
+.item-lista {
+    display: flex;
+    align-items: center;
+    gap: var(--e2);
+    padding: var(--e1) 0;
+}
+
+/* A divisória entre itens é a única linha do site, e é fina de propósito */
+.item-lista + .item-lista { border-top: 1px solid var(--cor-borda); }
+
+.item-titulo { font-weight: var(--peso-forte); }
+.item-apoio { font-size: var(--texto-legenda); color: var(--cor-texto-suave); }
+
+.ponto-cor {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex: none;
+}
+
+.legenda-lista {
+    display: flex;
+    flex-direction: column;
+    gap: var(--e1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    /* Ao lado da rosca, a lista precisa poder encolher: é ela, e não o
+       desenho, que cede espaço quando a tela é estreita */
+    flex: 1;
+    min-width: 0;
+}
+
+.legenda-lista li {
+    display: flex;
+    align-items: center;
+    gap: var(--e1);
+    margin: 0;
+    font-size: var(--texto-legenda);
+    min-width: 0;
+}
+
+/* Nome comprido de categoria vira reticências, em vez de empurrar o valor
+   para fora do cartão */
+.legenda-lista .crescer {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.legenda-cor {
+    width: 12px;
+    height: 12px;
+    flex: none;
+    border-radius: 4px;
+    background: var(--cor-cat, var(--cat-outros));
+}
+
+/* A frase que explica cada gráfico, logo abaixo dele */
+.frase-grafico {
+    margin: var(--e2) 0 0;
+    padding-top: var(--e2);
+    border-top: 1px solid var(--cor-borda);
+    font-size: var(--texto-legenda);
+    color: var(--cor-texto-suave);
+}
 
 /* BOTÕES */
 
@@ -1075,30 +1190,6 @@ body { overflow-wrap: break-word; }
 
 .cartao-entrada { width: 100%; max-width: 440px; }
 .cartao-entrada .marca { margin-bottom: var(--e3); }
-
-/* Acesso de demonstração: presente, mas discreto. Quem já tem conta não
-   pode confundir esta caixa com o formulário de verdade. */
-.acesso-demo {
-    display: grid;
-    gap: 6px;
-    margin-top: var(--e3);
-    padding: var(--e2);
-    text-align: center;
-    background: var(--cor-fundo);
-    border: 1px dashed var(--cor-borda);
-    border-radius: var(--raio-botao);
-}
-
-.acesso-demo-titulo {
-    font-size: var(--texto-legenda);
-    font-weight: var(--peso-forte);
-    color: var(--cor-texto);
-}
-
-.acesso-demo-dados {
-    font-size: var(--texto-legenda);
-    color: var(--cor-texto-suave);
-}
 
 /* Primeiro acesso: uma pergunta por vez, sem navegação em volta para
    competir com ela */

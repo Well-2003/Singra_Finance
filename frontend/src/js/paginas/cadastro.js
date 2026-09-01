@@ -1,6 +1,11 @@
 /* Singra - tela de criar conta
-   Três campos. Quem termina cai direto no onboarding, já logado: pedir para
-   fazer login com a senha recém-criada seria um passo a mais sem motivo. */
+   Três campos. Quem termina cai direto no painel, já logado: pedir para
+   fazer login com a senha recém-criada seria um passo a mais sem motivo.
+
+   O painel vem antes das perguntas de propósito. Chegar em uma tela
+   conhecida, com pouca coisa escrita, assusta menos do que abrir a conta
+   em um questionário. As perguntas continuam existindo, e o convite para
+   respondê-las fica no próprio painel, esperando a pessoa querer. */
 
 (function (global) {
     "use strict";
@@ -63,7 +68,7 @@
             return;
         }
 
-        global.location.href = "onboarding.html";
+        global.location.href = "dashboard.html";
     }
 
     form.addEventListener("submit", function (evento) {

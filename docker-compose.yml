@@ -1,15 +1,8 @@
 # Singra - MySQL para desenvolvimento local
 #
-# Opcional. Em produção o banco é gerenciado (Aiven ou TiDB Cloud) e o
-# backend vive no Render; nada aqui vai para lá. Isto existe para quem for
-# mexer no projeto sem instalar MySQL na própria máquina:
-#
-#     docker compose up -d
-#
-# Sobe um MySQL 8.4 na porta 3306, já com o banco e o usuário criados, com
-# os mesmos nomes que o backend/.env.example espera. Para desligar sem
-# perder os dados, `docker compose stop`; para apagar tudo e recomeçar do
-# zero, `docker compose down -v`.
+# Opcional, e sem relação com produção: lá o banco é gerenciado e o backend
+# vive fora daqui. Sobe um MySQL 8.4 na porta 3306, com o banco e o usuário
+# já criados, com os mesmos nomes que o backend/.env.example espera.
 #
 # As senhas abaixo são de desenvolvimento e estão no repositório de
 # propósito: o banco só escuta em 127.0.0.1 e não guarda dado de ninguém.

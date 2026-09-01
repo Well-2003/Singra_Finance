@@ -14,6 +14,7 @@ window.PainelAdicionar = (function (global) {
 
     var ID = "painel-adicionar";
     var LIMITE_CENTAVOS = 99999999999;
+    var CHAVE_TECLADO = "singra:teclado-escondido";
 
     var estado = null;
     var painel = null;
@@ -109,12 +110,20 @@ window.PainelAdicionar = (function (global) {
             "</div>" +
 
             // Teclado próprio, com teclas grandes, em vez do teclado do sistema
-            '<div class="teclado">' + teclas +
+            '<div class="teclado" data-teclado>' + teclas +
                 '<button type="button" class="tecla" data-tecla="00">00</button>' +
                 '<button type="button" class="tecla" data-tecla="0">0</button>' +
                 '<button type="button" class="tecla tecla-apagar" data-tecla="apagar" ' +
                     'aria-label="Apagar último número">' + icone("apagar-tecla") + "</button>" +
             "</div>" +
+
+            /* Quem tem teclado de verdade não precisa das teclas na tela, e
+               num computador elas só ocupam espaço. Escondê-las não muda
+               nada em como o valor é digitado: os números do teclado físico
+               caem na mesma função das teclas, então o visor continua se
+               formando da direita para a esquerda. */
+            '<button type="button" class="botao botao-texto botao-largo" ' +
+                'data-alternar-teclado style="margin-top:var(--e1)"></button>' +
 
             '<button type="button" class="botao botao-acao botao-largo" data-avancar="2" ' +
                 'style="margin-top:var(--e2)">Continuar</button>' +
@@ -249,6 +258,40 @@ window.PainelAdicionar = (function (global) {
         }
         esconderErros();
         desenharValor();
+    }
+
+    /* MOSTRAR OU ESCONDER AS TECLAS
+
+       A escolha fica no navegador, e não na conta: é uma preferência do
+       aparelho, e a mesma pessoa quer as teclas grandes no celular e o
+       teclado físico no computador.
+
+       O valor lido do localStorage é sempre texto, por isso a comparação
+       com a palavra "1" em vez de um simples if: a string "0" é verdadeira
+       em JavaScript e esconderia o teclado de todo mundo. */
+    function tecladoEscondido() {
+        try {
+            return localStorage.getItem(CHAVE_TECLADO) === "1";
+        } catch (erro) {
+            return false;
+        }
+    }
+
+    function desenharTeclado() {
+        var escondido = tecladoEscondido();
+        painel.querySelector("[data-teclado]").hidden = escondido;
+        painel.querySelector("[data-alternar-teclado]").textContent = escondido
+            ? "Mostrar as teclas"
+            : "Prefiro digitar pelo teclado";
+    }
+
+    function alternarTeclado() {
+        try {
+            localStorage.setItem(CHAVE_TECLADO, tecladoEscondido() ? "0" : "1");
+        } catch (erro) {
+            /* segue sem lembrar da escolha */
+        }
+        desenharTeclado();
     }
 
     function trocarTipo(tipo) {
@@ -426,6 +469,7 @@ window.PainelAdicionar = (function (global) {
         painel.querySelector("[data-area-apagar]").hidden = true;
         // Parcelar uma transação que já existe mudaria as outras parcelas
         painel.querySelector("[data-linha-parcelado]").hidden = Boolean(dados);
+        desenharTeclado();
 
         var forma = "pix";
         try { forma = localStorage.getItem("singra:forma") || "pix"; } catch (e) { /* segue */ }
@@ -534,6 +578,8 @@ window.PainelAdicionar = (function (global) {
             var tecla = alvo.closest("[data-tecla]");
             if (tecla) return digitar(tecla.dataset.tecla);
 
+            if (alvo.closest("[data-alternar-teclado]")) return alternarTeclado();
+
             var tipo = alvo.closest("[data-tipo]");
             if (tipo) return trocarTipo(tipo.dataset.tipo);
 
@@ -572,6 +618,9 @@ window.PainelAdicionar = (function (global) {
         painel.querySelector("#add-parcelas").addEventListener("input", atualizarDicaParcelas);
 
         // Teclado físico no passo 1, para quem está no computador
+        /* O teclado físico vale tanto quanto as teclas da tela, e é o que
+           sustenta a opção de escondê-las. Só responde no passo 1 e com o
+           painel aberto, para não roubar a digitação de outros campos. */
         document.addEventListener("keydown", function (evento) {
             if (!painel || painel.hidden || !estado || estado.passo !== 1) return;
             if (evento.key >= "0" && evento.key <= "9") digitar(evento.key);

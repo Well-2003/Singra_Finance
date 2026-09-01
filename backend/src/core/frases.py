@@ -300,6 +300,16 @@ def disponivel(resumo):
             "Saiu mais do que entrou este mês. Dê uma olhada nos gastos maiores.",
         )
     if resumo["tem_orcamento"]:
+        # Com ganho acima do planejado a frase antiga mentiria: o número
+        # grande já não sai só do planejamento
+        if _d(resumo.get("extra", 0)) > 0:
+            return _frase(
+                "frase.disponivel.planejamento_e_extra",
+                f"É o que sobra do seu planejamento de "
+                f"{moeda(resumo['planejado'])}, mais "
+                f"{moeda(resumo['extra'])} que entraram além dele.",
+                planejado=resumo["planejado"], extra=resumo["extra"],
+            )
         return _frase(
             "frase.disponivel.do_planejamento",
             f"É o que sobra do seu planejamento de {moeda(resumo['planejado'])}.",

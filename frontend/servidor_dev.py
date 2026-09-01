@@ -8,10 +8,6 @@ A diferença para o `python -m http.server` puro é uma linha: as respostas
 saem com `Cache-Control: no-store`. Sem isso o navegador guarda o CSS e o
 JavaScript antigos e uma correção parece não ter funcionado. É o tipo de
 tempo perdido que não aparece em lugar nenhum depois.
-
-Uso:
-
-    python frontend/servidor_dev.py [porta]
 """
 
 import sys

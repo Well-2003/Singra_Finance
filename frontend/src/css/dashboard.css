@@ -272,20 +272,6 @@
 
 .entrou-saiu b { color: var(--cor-texto); }
 
-/* ITENS DE LISTA */
-
-.item-lista {
-    display: flex;
-    align-items: center;
-    gap: var(--e2);
-    padding: var(--e1) 0;
-}
-
-/* A divisória entre itens é a única linha do site, e é fina de propósito */
-.item-lista + .item-lista { border-top: 1px solid var(--cor-borda); }
-
-.item-titulo { font-weight: var(--peso-forte); }
-.item-apoio { font-size: var(--texto-legenda); color: var(--cor-texto-suave); }
 
 /* ESPAÇO RESERVADO PARA O CONTEÚDO */
 
@@ -472,13 +458,6 @@
 .paleta input:focus-visible + label { box-shadow: var(--sombra-foco); }
 
 /* A cor do cartão dentro do chip de vínculo */
-.ponto-cor {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    flex: none;
-}
 
 
 /* ROSCA E LEGENDA */
@@ -487,52 +466,6 @@
 .rosca { width: 132px; height: 132px; flex: none; transform: rotate(-90deg); }
 .rosca circle { fill: none; stroke-width: 18; }
 
-.legenda-lista {
-    display: flex;
-    flex-direction: column;
-    gap: var(--e1);
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    /* Ao lado da rosca, a lista precisa poder encolher: é ela, e não o
-       desenho, que cede espaço quando a tela é estreita */
-    flex: 1;
-    min-width: 0;
-}
-
-.legenda-lista li {
-    display: flex;
-    align-items: center;
-    gap: var(--e1);
-    margin: 0;
-    font-size: var(--texto-legenda);
-    min-width: 0;
-}
-
-/* Nome comprido de categoria vira reticências, em vez de empurrar o valor
-   para fora do cartão */
-.legenda-lista .crescer {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.legenda-cor {
-    width: 12px;
-    height: 12px;
-    flex: none;
-    border-radius: 4px;
-    background: var(--cor-cat, var(--cat-outros));
-}
-
-/* A frase que explica cada gráfico, logo abaixo dele */
-.frase-grafico {
-    margin: var(--e2) 0 0;
-    padding-top: var(--e2);
-    border-top: 1px solid var(--cor-borda);
-    font-size: var(--texto-legenda);
-    color: var(--cor-texto-suave);
-}
 
 /* COMPARAÇÃO COM O MÊS ANTERIOR */
 
@@ -583,6 +516,24 @@
 
 .alerta-fechar:hover { background: var(--cor-superficie); color: var(--cor-texto); }
 .alerta-fechar svg { width: 18px; height: 18px; }
+
+/* O CONVITE DE PRIMEIRO ACESSO
+
+   Fundo de superfície, e não o verde do cartão de destaque logo abaixo:
+   dois blocos verdes empilhados viram um só aos olhos, e o número grande
+   deixaria de ser a primeira coisa que a pessoa enxerga. A faixa verde na
+   lateral basta para marcar que este bloco é diferente dos outros.
+
+   O respiro à direita no título existe para o X não encostar na palavra. */
+.cartao-convite {
+    position: relative;
+    border-left: 4px solid var(--cor-primaria);
+    margin-bottom: var(--e2);
+}
+
+.cartao-convite h2 { padding-right: var(--e4); }
+
+.cartao-convite p { color: var(--cor-texto); }
 
 
 /* HISTÓRICO */
@@ -673,6 +624,13 @@
     outline: none;
     border-color: var(--cor-primaria-escura);
     box-shadow: var(--sombra-foco);
+}
+
+/* No celular o campo cede alguns pixels para o nome da categoria: cabe um
+   valor de seis dígitos do mesmo jeito, e "Dívidas e parcelas" deixa de
+   quebrar em duas linhas */
+@media (max-width: 560px) {
+    .entrada-limite { width: 108px; }
 }
 
 /* Piscada verde confirmando que salvou, já que não há botão de salvar */
@@ -813,24 +771,39 @@
    "Moradia" saía quebrado no meio e "gasto · essencial" virava quatro
    linhas. Na largura de um tablet para cima eles voltam para a direita, que
    é onde cabem sem apertar nada. */
+/* CATEGORIAS E CARTÕES NO PERFIL
+
+   O nome ocupa só a largura de que precisa. Nome curto sobra espaço na
+   linha e os botões cabem ao lado, empurrados para a direita pelo
+   `flex-grow` do nome. Nome comprido enche a linha sozinho e os botões
+   descem para a linha de baixo, porque o flexbox só quebra quando o item
+   não cabe no tamanho natural dele.
+
+   É por isso que aqui o `.crescer` não pode usar o `flex: 1` do global.css:
+   aquele valor dá base zero ao nome, e um item de base zero sempre cabe,
+   então a quebra nunca aconteceria. */
 .linha-categoria {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: var(--e1) var(--e2);
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    gap: var(--e1) var(--e2);
     padding: var(--e2) 0;
 }
 
 .linha-categoria > .bolha,
-.linha-categoria > .ponto-cor { grid-row: span 2; align-self: center; }
+.linha-categoria > .ponto-cor { flex: none; }
 
-.linha-categoria > .crescer { grid-column: 2; }
+.linha-categoria > .crescer {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-wrap: break-word;
+}
 
 .linha-categoria > .acoes {
-    grid-column: 2;
     display: flex;
     flex-wrap: wrap;
     gap: var(--e1);
+    flex: none;
 }
 
 .linha-categoria + .linha-categoria { border-top: 1px solid var(--cor-borda); }
@@ -838,12 +811,5 @@
 /* Categoria escondida continua na lista, mais apagada, porque é de lá que
    dá para trazê-la de volta */
 .linha-categoria.oculta { opacity: 0.6; }
-
-@media (min-width: 620px) {
-    .linha-categoria { grid-template-columns: auto 1fr auto; }
-    .linha-categoria > .bolha,
-    .linha-categoria > .ponto-cor { grid-row: auto; }
-    .linha-categoria > .acoes { grid-column: 3; grid-row: 1; }
-}
 
 .zona-perigo { border-color: color-mix(in srgb, var(--cor-gasto) 45%, var(--cor-borda)); }

@@ -7,9 +7,6 @@
 # para public/index.html, então o endereço do site cai na página inicial.
 #
 # Não há etapa de build: o site é HTML, CSS e JavaScript puro.
-#
-# Para ligar, uma vez só, no repositório:
-#   Settings > Pages > Build and deployment > Source: GitHub Actions
 
 name: Publicar frontend
 

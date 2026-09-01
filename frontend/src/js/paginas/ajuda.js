@@ -113,7 +113,7 @@
             var mensagem = document.getElementById("contato-mensagem").value.trim();
 
             var corpo = mensagem + "\n\n--\n" + nome + "\n" + email;
-            global.location.href = "mailto:ola@singra.com.br" +
+            global.location.href = "mailto:suporte@singra.com.br" +
                 "?subject=" + encodeURIComponent("Contato pelo site - " + nome) +
                 "&body=" + encodeURIComponent(corpo);
         });

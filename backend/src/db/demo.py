@@ -1,17 +1,16 @@
-"""Singra - conta de demonstração com três meses de histórico.
+"""Singra - conta de exemplo para desenvolvimento local.
 
-Existe para quem abrir o site conseguir ver o sistema cheio sem criar conta
-e sem esperar três meses de uso: gráficos com forma, metas em andamento,
-contas vencendo e uma compra parcelada no meio do caminho.
+Enche um banco de desenvolvimento com três meses de histórico: gráficos com
+forma, metas em andamento, contas vencendo e uma compra parcelada no meio do
+caminho. Serve para testar telas que só fazem sentido com dados dentro, sem
+esperar três meses de uso de verdade.
 
-As credenciais aparecem na tela de entrada, de propósito. É uma conta
-pública de vitrine, e por isso não guarda nada que não possa ser visto por
-qualquer pessoa, quem quiser usar o Singra de verdade cria a própria.
+Não é usada em produção e não é criada por nenhuma parte do sistema. Roda
+somente quando alguém digita o comando, e apaga a conta anterior antes de
+criar a nova, então nunca duplica.
 
 Os números são sorteados, mas a semente é fixa: rodar de novo produz
 exatamente os mesmos dados.
-
-    python -m src.db.demo
 """
 
 import random

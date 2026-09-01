@@ -8,14 +8,10 @@
 window.Api = (function (global) {
     "use strict";
 
-    /* O endereço da API em produção. Ao publicar o backend no Render, cole
-       a URL aqui: é o único lugar do frontend que precisa mudar.
-
-           var API_PRODUCAO = "https://singra-api.onrender.com";
-
-       Enquanto estiver vazio, as páginas abertas fora da sua máquina avisam
-       que a API não foi configurada, em vez de falhar caladas. */
-    var API_PRODUCAO = "";
+    /* O endereço da API em produção, o único lugar do frontend que sabe
+       onde o backend mora. Vazio faz as páginas abertas fora da máquina
+       avisarem que a API não foi configurada, em vez de falharem caladas. */
+    var API_PRODUCAO = "https://singra-api.onrender.com";
 
     var API_LOCAL = "http://127.0.0.1:5000";
     var HOSTS_LOCAIS = ["localhost", "127.0.0.1", ""];

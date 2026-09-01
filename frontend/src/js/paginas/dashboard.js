@@ -52,6 +52,34 @@
             "</div></section>";
     }
 
+    /* O CONVITE DE QUEM ACABOU DE CHEGAR
+
+       Quem cria a conta cai direto aqui, num painel ainda zerado. Este é o
+       único lugar que diz o que fazer em seguida, e ele aponta para o
+       planejamento porque é dali que sai o "quanto ainda posso gastar":
+       sem planejamento o número só reage ao que já entrou.
+
+       O convite se dispensa, e dispensar é definitivo: marcar o primeiro
+       acesso como concluído na API é o mesmo que a pessoa faria terminando
+       as perguntas. Um aviso que volta a cada visita deixa de ser convite. */
+    function cartaoBoasVindas(p) {
+        if (!p.primeiro_acesso) return "";
+
+        return '<section class="cartao cartao-convite" data-boas-vindas>' +
+            '<button type="button" class="alerta-fechar" data-dispensar-convite ' +
+                'aria-label="Dispensar este convite">' + icone("fechar") + "</button>" +
+            "<h2>Bem-vindo ao Singra 🌱</h2>" +
+            "<p>Para o painel saber quanto você ainda pode gastar, ele precisa " +
+            "de uma referência. Monte seu planejamento: você diz quanto pretende " +
+            "gastar em cada categoria e nós cuidamos do resto.</p>" +
+            '<div class="linha" style="margin-top:var(--e2)">' +
+                '<a class="botao botao-acao" href="orcamento.html">' +
+                    "Montar meu planejamento</a>" +
+                '<a class="botao botao-suave" href="onboarding.html">' +
+                    "Responder algumas perguntas</a>" +
+            "</div></section>";
+    }
+
     /* Só aparece se a pessoa criou a meta de investimento. Sem ela, o
        cartão fica oculto, nunca zerado: um espaço em branco é lido como
        erro ou como algo que falta preencher. */
@@ -214,6 +242,7 @@
 
         alvo.className = "";
         alvo.innerHTML =
+            cartaoBoasVindas(p) +
             cartaoPrincipal(p) +
             '<div class="grade-painel" style="margin-top:var(--e2)">' +
                 cartaoGuardado(p) +
@@ -238,6 +267,14 @@
         if (evento.target.closest("[data-dispensar-alerta]")) {
             var caixa = document.querySelector("[data-alerta-sobra]");
             if (caixa) caixa.remove();
+            return;
+        }
+
+        if (evento.target.closest("[data-dispensar-convite]")) {
+            var convite = document.querySelector("[data-boas-vindas]");
+            if (convite) convite.remove();
+            // Sai da tela na hora e some de vez no servidor, sem esperar
+            await global.ApiPerfil.onboarding({ concluir: true });
             return;
         }
 

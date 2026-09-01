@@ -15,10 +15,6 @@ uma rota sem descrição vira "sem descrição" no arquivo, à vista de todos.
 O diagrama sai em SVG, e não em PNG como pedia a documentação do produto.
 SVG é texto, então cabe no diff de um commit, abre em qualquer navegador e
 não perde nitidez quando alguém dá zoom para ler o nome de uma coluna.
-
-Uso:
-
-    python backend/gerar_docs.py
 """
 
 import json

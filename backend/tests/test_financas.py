@@ -4,9 +4,6 @@ Cobrem o mês financeiro, os períodos da meta de investimento, o
 parcelamento, a leitura do que vem do navegador e o hash de senha. São as
 regras em que um erro passa despercebido na tela e só aparece no fim do mês,
 quando a conta não bate.
-
-Rodar, de dentro de backend/:
-    python -m unittest discover -s tests -t .
 """
 
 import unittest

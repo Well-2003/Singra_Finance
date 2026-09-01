@@ -43,13 +43,6 @@
             return;
         }
 
-        /* Quem se cadastrou e abandonou no meio das primeiras perguntas
-           volta para elas, e não para um painel ainda vazio. */
-        if (resposta.usuario && !resposta.usuario.onboarding_ok) {
-            global.location.href = "onboarding.html";
-            return;
-        }
-
         // Volta para a página de onde a pessoa veio, se ela foi barrada lá
         global.location.href = global.Sessao.destinoDepoisDoLogin();
     }
@@ -58,14 +51,6 @@
         evento.preventDefault();
         entrar(campoEmail.value.trim().toLowerCase(), campoSenha.value,
                form.querySelector("[type=submit]"));
-    });
-
-    // Preenche e entra de uma vez: dois passos para ver uma demonstração
-    // já seriam um a mais
-    document.querySelector("[data-entrar-demo]").addEventListener("click", function (evento) {
-        campoEmail.value = "demo@singra.com.br";
-        campoSenha.value = "singra1234";
-        entrar(campoEmail.value, campoSenha.value, evento.currentTarget);
     });
 
     // Sessão que venceu enquanto a pessoa usava o site

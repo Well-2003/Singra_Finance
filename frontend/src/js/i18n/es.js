@@ -30,7 +30,7 @@ window.TextosES = {
         "Início": "Inicio",
         "Histórico": "Historial",
         "Gráficos": "Gráficos",
-        "Orçamento": "Presupuesto",
+        "Planejamento": "Planificación",
         "Metas": "Metas",
         "Contas": "Cuentas",
         "Contas a pagar": "Cuentas por pagar",
@@ -58,7 +58,8 @@ window.TextosES = {
         "Ir para o meu painel": "Ir a mi panel",
         "Seu dinheiro, organizado sem planilha.":
             "Tu dinero, ordenado sin planilla.",
-        "© 2026 Singra · Curitiba, PR": "© 2026 Singra · Curitiba, Brasil",
+        "© 2026 Singra · Todos os direitos reservados":
+            "© 2026 Singra · Todos los derechos reservados",
         "Links do rodapé": "Enlaces del pie de página",
 
         // Carga, conexión y sesión
@@ -119,7 +120,6 @@ window.TextosES = {
         "Não precisa organizar o passado. Registre o café de hoje e o resto vai se montando sozinho.":
             "No hace falta ordenar el pasado. Registra el café de hoy y el resto se va armando solo.",
         "Criar minha conta grátis": "Crear mi cuenta gratis",
-        "tela de entrar": "pantalla de entrada",
 
         // Entrar, crear cuenta y recuperar contraseña
         "Que bom te ver de novo": "Qué bueno verte de nuevo",
@@ -131,8 +131,6 @@ window.TextosES = {
         "Esqueci minha senha": "Olvidé mi contraseña",
         "Ainda não tem conta?": "¿Todavía no tienes cuenta?",
         "Já tem conta?": "¿Ya tienes cuenta?",
-        "Quer só dar uma olhada?": "¿Solo quieres echar un vistazo?",
-        "Entrar como demonstração": "Entrar con la cuenta de demostración",
         "Vamos começar": "Vamos a empezar",
         "Leva menos de um minuto. E é de graça.":
             "Toma menos de un minuto. Y es gratis.",
@@ -647,6 +645,8 @@ window.TextosES = {
             "Salió más de lo que entró este mes. Échale un ojo a los gastos más grandes.",
         "frase.disponivel.do_planejamento":
             "Es lo que sobra de tu presupuesto de {planejado}.",
+        "frase.disponivel.planejamento_e_extra":
+            "Es lo que sobra de tu presupuesto de {planejado}, más {extra} que entraron por encima de él.",
         "frase.disponivel.entrou_saiu": "Entraron {ganhos} y salieron {gastos}.",
 
         "frase.poupanca.acima":

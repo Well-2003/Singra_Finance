@@ -4,8 +4,6 @@ Guarda o DDL do banco e a carga das categorias modelo. Roda sozinho na
 primeira subida do backend (ver main.py), o que é o que permite publicar no
 Render apontando para um banco vazio da Aiven ou do TiDB Cloud sem precisar
 abrir um cliente de MySQL para rodar script à mão.
-
-Executar manualmente:  python -m src.db.models
 """
 
 from src.db import conexao
@@ -273,6 +271,7 @@ def preparar_banco():
     # do Render não desfazer um ajuste feito depois no banco.
     if not modelos:
         modelos = carregar_categorias_modelo()
+
     return {"tabelas": len(criadas), "categorias_modelo": modelos}
 
 

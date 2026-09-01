@@ -162,6 +162,14 @@ def resumo_do_mes(usuario, ctx):
     não um planejamento: com planejamento a conta parte do limite que ela
     mesma combinou. Sem planejamento, a única referência é o que entrou.
     Dos dois casos ainda sai o que já foi guardado no mês.
+
+    O planejamento é um limite, mas nunca um teto para o dinheiro que a
+    pessoa não esperava. Quem planejou 3.000 e recebeu um freela de 500
+    tem 3.500 de verdade, e o painel precisava mostrar isso: sem esta
+    conta, registrar um ganho não mexia no número grande e o site parecia
+    ter engolido a entrada. Então a base é a maior das duas referências, e
+    o que passa do planejado aparece na resposta como `extra` para a tela
+    poder explicar de onde veio o aumento.
     """
     usuario_id = usuario["id"]
     totais = transacoes.totais_do_periodo(usuario_id, ctx["inicio"], ctx["fim"])
@@ -170,7 +178,9 @@ def resumo_do_mes(usuario, ctx):
 
     planejado = Decimal(str(orcamentos.total_planejado(usuario_id, ctx["ano"], ctx["mes"])))
     tem_orcamento = planejado > 0
-    base = planejado if tem_orcamento else ganhos
+
+    extra = max(Decimal("0"), ganhos - planejado) if tem_orcamento else Decimal("0")
+    base = planejado + extra if tem_orcamento else ganhos
 
     guardado = _guardado_no_mes(usuario, ctx)
     disponivel = base - gastos - guardado
@@ -194,6 +204,7 @@ def resumo_do_mes(usuario, ctx):
         "sobra": numero(sobra),
         "disponivel": numero(disponivel),
         "planejado": numero(planejado),
+        "extra": numero(extra),
         "tem_orcamento": tem_orcamento,
         "usado_pct": porcentagem(gastos + guardado, base),
         "taxa_poupanca": porcentagem(sobra, ganhos) if ganhos > 0 else 0,
@@ -545,6 +556,10 @@ def painel(usuario, ctx, hoje=None):
 
     return {
         "mes": contexto_json(ctx),
+        # Quem acabou de criar a conta cai aqui sem ter respondido nada. O
+        # painel usa isso para convidar ao planejamento uma vez, e o convite
+        # some quando a pessoa aceita ou dispensa.
+        "primeiro_acesso": not usuario["onboarding_ok"],
         "resumo": resumo,
         "investimento": invest,
         "alerta_sobra": alerta_de_sobra(resumo, invest),
